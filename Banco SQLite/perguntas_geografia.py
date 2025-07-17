@@ -1,0 +1,252 @@
+perguntas_geografia = [
+    {
+        "pergunta": "Qual é a capital do estado de Mato Grosso?",
+        "A": "Rondonópolis",
+        "B": "Várzea Grande",
+        "C": "Cuiabá",
+        "D": "Sinop",
+        "resposta": "Cuiabá",
+        "categoria": "Geografia",
+        "dificuldade": "fácil"
+    },
+    {
+        "pergunta": "Qual importante bioma cobre grande parte do estado de Mato Grosso?",
+        "A": "Mata Atlântica",
+        "B": "Caatinga",
+        "C": "Pantanal",
+        "D": "Cerrado",
+        "resposta": "Cerrado",
+        "categoria": "Geografia",
+        "dificuldade": "fácil"
+    },
+    {
+        "pergunta": "Qual é o maior rio que atravessa o Pantanal mato-grossense?",
+        "A": "Rio Cuiabá",
+        "B": "Rio Paraguai",
+        "C": "Rio Teles Pires",
+        "D": "Rio Araguaia",
+        "resposta": "Rio Paraguai",
+        "categoria": "Geografia",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "Qual é o relevo predominante em Mato Grosso?",
+        "A": "Planalto",
+        "B": "Planície costeira",
+        "C": "Serra",
+        "D": "Depressão periférica",
+        "resposta": "Planalto",
+        "categoria": "Geografia",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "O clima predominante em Mato Grosso é:",
+        "A": "Temperado oceânico",
+        "B": "Semiárido",
+        "C": "Equatorial e tropical",
+        "D": "Subtropical",
+        "resposta": "Equatorial e tropical",
+        "categoria": "Geografia",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "Quais os três biomas encontrados em Mato Grosso?",
+        "A": "Cerrado, Mata Atlântica e Caatinga",
+        "B": "Cerrado, Pantanal e Amazônia",
+        "C": "Caatinga, Pampas e Pantanal",
+        "D": "Amazônia, Caatinga e Pampas",
+        "resposta": "Cerrado, Pantanal e Amazônia",
+        "categoria": "Geografia",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "Qual a posição geográfica de Mato Grosso no território brasileiro?",
+        "A": "Região Nordeste",
+        "B": "Região Sudeste",
+        "C": "Região Norte",
+        "D": "Região Centro-Oeste",
+        "resposta": "Região Centro-Oeste",
+        "categoria": "Geografia",
+        "dificuldade": "fácil"
+    },
+    {
+        "pergunta": "Qual cidade de MT é conhecida como 'Capital do Agronegócio'?",
+        "A": "Cuiabá",
+        "B": "Rondonópolis",
+        "C": "Sinop",
+        "D": "Sorriso",
+        "resposta": "Sorriso",
+        "categoria": "Geografia",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "Qual rio marca parte da divisa entre Mato Grosso e Goiás?",
+        "A": "Rio Xingu",
+        "B": "Rio Araguaia",
+        "C": "Rio Juruena",
+        "D": "Rio Madeira",
+        "resposta": "Rio Araguaia",
+        "categoria": "Geografia",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "Qual cidade é um importante polo agroindustrial no sul do estado?",
+        "A": "Alta Floresta",
+        "B": "Tangará da Serra",
+        "C": "Lucas do Rio Verde",
+        "D": "Cáceres",
+        "resposta": "Lucas do Rio Verde",
+        "categoria": "Geografia",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "O Pantanal mato-grossense é considerado:",
+        "A": "A menor planície alagável do mundo",
+        "B": "A maior planície alagável do mundo",
+        "C": "Um deserto sazonal",
+        "D": "Área de mineração de sal",
+        "resposta": "A maior planície alagável do mundo",
+        "categoria": "Geografia",
+        "dificuldade": "fácil"
+    },
+    {
+        "pergunta": "Qual cidade de MT é próxima ao ponto geodésico da América do Sul?",
+        "A": "Cáceres",
+        "B": "Rondonópolis",
+        "C": "Chapada dos Guimarães",
+        "D": "Barra do Garças",
+        "resposta": "Chapada dos Guimarães",
+        "categoria": "Geografia",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "A Serra do Roncador está localizada em qual parte de MT?",
+        "A": "Sul",
+        "B": "Norte",
+        "C": "Oeste",
+        "D": "Leste",
+        "resposta": "Leste",
+        "categoria": "Geografia",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "A principal cultura agrícola de exportação de MT é:",
+        "A": "Milho",
+        "B": "Arroz",
+        "C": "Cana-de-açúcar",
+        "D": "Soja",
+        "resposta": "Soja",
+        "categoria": "Geografia",
+        "dificuldade": "fácil"
+    },
+    {
+        "pergunta": "Qual a principal rodovia que atravessa MT de norte a sul?",
+        "A": "BR-364",
+        "B": "BR-070",
+        "C": "BR-158",
+        "D": "BR-163",
+        "resposta": "BR-163",
+        "categoria": "Geografia",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "Qual cidade é conhecida pelo turismo ecológico e pelas cachoeiras?",
+        "A": "Rondonópolis",
+        "B": "Chapada dos Guimarães",
+        "C": "Sinop",
+        "D": "Sorriso",
+        "resposta": "Chapada dos Guimarães",
+        "categoria": "Geografia",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "O Rio Teles Pires é afluente de qual importante bacia?",
+        "A": "Paraná",
+        "B": "São Francisco",
+        "C": "Tocantins",
+        "D": "Amazonas",
+        "resposta": "Amazonas",
+        "categoria": "Geografia",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "Qual cidade está mais ao norte em Mato Grosso?",
+        "A": "Alta Floresta",
+        "B": "Sinop",
+        "C": "Juína",
+        "D": "Cuiabá",
+        "resposta": "Alta Floresta",
+        "categoria": "Geografia",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "Em relação ao tamanho territorial, Mato Grosso é:",
+        "A": "O maior estado brasileiro",
+        "B": "O segundo maior estado",
+        "C": "O terceiro maior estado",
+        "D": "O quarto maior estado",
+        "resposta": "O terceiro maior estado",
+        "categoria": "Geografia",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "Quais estados fazem fronteira com Mato Grosso?",
+        "A": "MS, GO, TO, PA, RO, AM",
+        "B": "SP, PR, BA, MG",
+        "C": "AM, AC, RJ, CE",
+        "D": "MA, PI, PB, RN",
+        "resposta": "MS, GO, TO, PA, RO, AM",
+        "categoria": "Geografia",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "A vegetação da Amazônia no norte de MT é:",
+        "A": "Mata de araucária",
+        "B": "Mata ciliar",
+        "C": "Floresta estacional",
+        "D": "Floresta tropical úmida",
+        "resposta": "Floresta tropical úmida",
+        "categoria": "Geografia",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "Qual atividade econômica é predominante em MT?",
+        "A": "Turismo",
+        "B": "Pecuária e agricultura",
+        "C": "Mineração de carvão",
+        "D": "Indústria naval",
+        "resposta": "Pecuária e agricultura",
+        "categoria": "Geografia",
+        "dificuldade": "fácil"
+    },
+    {
+        "pergunta": "Quantos municípios existem em Mato Grosso (2024)?",
+        "A": "141",
+        "B": "105",
+        "C": "120",
+        "D": "160",
+        "resposta": "141",
+        "categoria": "Geografia",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "Qual bacia hidrográfica cobre a maior parte do estado?",
+        "A": "Bacia do São Francisco",
+        "B": "Bacia Platina",
+        "C": "Bacia Amazônica",
+        "D": "Bacia do Tocantins-Araguaia",
+        "resposta": "Bacia Amazônica",
+        "categoria": "Geografia",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "Qual a altitude aproximada de Cuiabá?",
+        "A": "300 metros",
+        "B": "700 metros",
+        "C": "50 metros",
+        "D": "1000 metros",
+        "resposta": "300 metros",
+        "categoria": "Geografia",
+        "dificuldade": "médio"
+    }
+]
