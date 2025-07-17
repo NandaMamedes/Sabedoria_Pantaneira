@@ -100,12 +100,12 @@ perguntas_historia = [
         "dificuldade": "difícil"
     },
     {
-        "pergunta": "Qual tratado definiu a posse portuguesa sobre Mato Grosso frente à Espanha?",
+        "pergunta": "Qual tratado definiu a posse portuguesa sobre Mato Grosso frente à Espanha em 1750?",
         "A": "Tratado de Petrópolis",
         "B": "Tratado de Lisboa",
-        "C": "Tratado de Madri (1750)",
+        "C": "Tratado de Madri",
         "D": "Tratado de Tordesilhas",
-        "resposta": "Tratado de Madri (1750)",
+        "resposta": "Tratado de Madri",
         "categoria": "História",
         "dificuldade": "difícil"
     },
@@ -171,21 +171,21 @@ perguntas_historia = [
     },
     {
         "pergunta": "Qual movimento histórico teve impacto em MT no século XX?",
-        "A": "Revolução de 1930",
+        "A": "Marcha para o Oeste",
         "B": "Diretas Já",
         "C": "Inconfidência Mineira",
         "D": "Guerra do Contestado",
-        "resposta": "Revolução de 1930",
+        "resposta": "Marcha para o Oeste",
         "categoria": "História",
         "dificuldade": "médio"
     },
     {
         "pergunta": "Rondonópolis surgiu a partir de:",
-        "A": "Turismo",
+        "A": "Expansão agrícola e ferroviária",
         "B": "Colonização italiana",
-        "C": "Expansão agrícola e ferroviária",
+        "C": "Descoberta de filões diamantíferos na região",
         "D": "Descoberta de ouro",
-        "resposta": "Expansão agrícola e ferroviária",
+        "resposta": "Descoberta de filões diamantíferos na região",
         "categoria": "História",
         "dificuldade": "médio"
     },

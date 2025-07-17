@@ -31,11 +31,11 @@ perguntas_geografia = [
     },
     {
         "pergunta": "Qual é o relevo predominante em Mato Grosso?",
-        "A": "Planalto",
+        "A": "Planaltos e Chapadas",
         "B": "Planície costeira",
         "C": "Serra",
         "D": "Depressão periférica",
-        "resposta": "Planalto",
+        "resposta": "Planaltos e Chapadas",
         "categoria": "Geografia",
         "dificuldade": "médio"
     },
@@ -93,9 +93,9 @@ perguntas_geografia = [
         "pergunta": "Qual cidade é um importante polo agroindustrial no sul do estado?",
         "A": "Alta Floresta",
         "B": "Tangará da Serra",
-        "C": "Lucas do Rio Verde",
+        "C": "Rondonópolis",
         "D": "Cáceres",
-        "resposta": "Lucas do Rio Verde",
+        "resposta": "Rondonópolis",
         "categoria": "Geografia",
         "dificuldade": "médio"
     },
@@ -110,12 +110,12 @@ perguntas_geografia = [
         "dificuldade": "fácil"
     },
     {
-        "pergunta": "Qual cidade de MT é próxima ao ponto geodésico da América do Sul?",
+        "pergunta": "Qual cidade de MT é o ponto geodésico da América do Sul?",
         "A": "Cáceres",
         "B": "Rondonópolis",
-        "C": "Chapada dos Guimarães",
+        "C": "Cuiabá",
         "D": "Barra do Garças",
-        "resposta": "Chapada dos Guimarães",
+        "resposta": "Cuiabá",
         "categoria": "Geografia",
         "dificuldade": "difícil"
     },
@@ -124,8 +124,8 @@ perguntas_geografia = [
         "A": "Sul",
         "B": "Norte",
         "C": "Oeste",
-        "D": "Leste",
-        "resposta": "Leste",
+        "D": "Sudeste",
+        "resposta": "Sudeste",
         "categoria": "Geografia",
         "dificuldade": "difícil"
     },
@@ -241,11 +241,11 @@ perguntas_geografia = [
     },
     {
         "pergunta": "Qual a altitude aproximada de Cuiabá?",
-        "A": "300 metros",
+        "A": "165 metros",
         "B": "700 metros",
         "C": "50 metros",
         "D": "1000 metros",
-        "resposta": "300 metros",
+        "resposta": "165 metros",
         "categoria": "Geografia",
         "dificuldade": "médio"
     }
