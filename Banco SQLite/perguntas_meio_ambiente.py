@@ -213,9 +213,9 @@ perguntas_meio_ambiente = [
         "pergunta": "Qual município é destaque na produção agrícola e sofre pressão ambiental?",
         "A": "Chapada dos Guimarães",
         "B": "Alta Floresta",
-        "C": "Lucas do Rio Verde",
+        "C": "Sorriso",
         "D": "Jaciara",
-        "resposta": "Lucas do Rio Verde",
+        "resposta": "Sorriso",
         "categoria": "Meio Ambiente",
         "dificuldade": "médio"
     },

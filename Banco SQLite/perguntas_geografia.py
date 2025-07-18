@@ -248,5 +248,235 @@ perguntas_geografia = [
         "resposta": "165 metros",
         "categoria": "Geografia",
         "dificuldade": "médio"
+    },
+    {
+        "pergunta": "Qual município mato-grossense é conhecido por ser uma das maiores áreas de cultivo de algodão do Brasil?",
+        "A": "Lucas do Rio Verde",
+        "B": "Sinop",
+        "C": "Sorriso",
+        "D": "Sapezal",
+        "resposta": "Sapezal",
+        "categoria": "Geografia",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "Qual cidade mato-grossense é conhecida por sua proximidade com o Parque Nacional do Xingu?",
+        "A": "Querência",
+        "B": "Barra do Garças",
+        "C": "Tangará da Serra",
+        "D": "Cáceres",
+        "resposta": "Querência",
+        "categoria": "Geografia",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "Qual importante rodovia federal conecta Cuiabá a Porto Velho?",
+        "A": "BR-070",
+        "B": "BR-364",
+        "C": "BR-158",
+        "D": "BR-174",
+        "resposta": "BR-364",
+        "categoria": "Geografia",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "A cidade de Cáceres está localizada às margens de qual rio?",
+        "A": "Rio Cuiabá",
+        "B": "Rio Jauru",
+        "C": "Rio Teles Pires",
+        "D": "Rio Arinos",
+        "resposta": "Rio Paraguai",
+        "categoria": "Geografia",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "Qual é o ponto mais alto do estado de Mato Grosso?",
+        "A": "Serra do Monte Cristo",
+        "B": "Pico do Roncador",
+        "C": "Chapada dos Guimarães",
+        "D": "Pico do Neblina",
+        "resposta": "Serra do Monte Cristo",
+        "categoria": "Geografia",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "Qual dessas cidades que não faz divisa com a Bolívia?",
+        "A": "Primavera do Leste",
+        "B": "Cáceres",
+        "C": "Vila Bela da Santíssima Trindade",
+        "D": "Porto Esperidião",
+        "resposta": "Vila Bela da Santíssima Trindade",
+        "categoria": "Geografia",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "O município de Nova Xavantina está localizado às margens de qual rio?",
+        "A": "Rio das Mortes",
+        "B": "Rio Garças",
+        "C": "Rio Araguaia",
+        "D": "Rio São Lourenço",
+        "resposta": "Rio das Mortes",
+        "categoria": "Geografia",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "O Parque Estadual do Cristalino está localizado em qual cidade?",
+        "A": "Alta Floresta",
+        "B": "Sinop",
+        "C": "Juína",
+        "D": "Guarantã do Norte",
+        "resposta": "Alta Floresta",
+        "categoria": "Geografia",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "Qual importante usina hidrelétrica está situada no Rio Teles Pires?",
+        "A": "Usina de Belo Monte",
+        "B": "Usina de Sinop",
+        "C": "Usina de Teles Pires",
+        "D": "Usina de Itaipu",
+        "resposta": "Usina de Teles Pires",
+        "categoria": "Geografia",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "Qual município está localizado entre as cabeceiras dos rios Araguaia e Xingu?",
+        "A": "Canarana",
+        "B": "Canabrava do Norte",
+        "C": "Vila Rica",
+        "D": "Confresa",
+        "resposta": "Canarana",
+        "categoria": "Geografia",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "Qual município é um centro logístico importante por estar no entroncamento da BR-163 e BR-364?",
+        "A": "Cuiabá",
+        "B": "Várzea Grande",
+        "C": "Rondonópolis",
+        "D": "Campo Novo do Parecis",
+        "resposta": "Rondonópolis",
+        "categoria": "Geografia",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "Qual município é conhecido pela produção de etanol e açúcar em grande escala?",
+        "A": "Lucas do Rio Verde",
+        "B": "Nova Olímpia",
+        "C": "Sapezal",
+        "D": "Nova Mutum",
+        "resposta": "Lucas do Rio Verde",
+        "categoria": "Geografia",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "Qual cidade mato-grossense abriga o Parque Nacional da Chapada dos Guimarães?",
+        "A": "Cuiabá",
+        "B": "Chapada dos Guimarães",
+        "C": "Poconé",
+        "D": "Rosário Oeste",
+        "resposta": "Chapada dos Guimarães",
+        "categoria": "Geografia",
+        "dificuldade": "fácil"
+    },
+    {
+        "pergunta": "Qual cidade é considerada a capital da pecuária em Mato Grosso?",
+        "A": "Várzea Grande",
+        "B": "Sinop",
+        "C": "Juara",
+        "D": "Rondonópolis",
+        "resposta": "Juara",
+        "categoria": "Geografia",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "A BR-158 corta Mato Grosso no sentido:",
+        "A": "Leste-Oeste",
+        "B": "Norte-Sul",
+        "C": "Diagonal",
+        "D": "Circular",
+        "resposta": "Norte-Sul",
+        "categoria": "Geografia",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "Qual cidade de MT é famosa pelo Festival Internacional de Pesca?",
+        "A": "Barra do Garças",
+        "B": "Cáceres",
+        "C": "Sapezal",
+        "D": "Tangará da Serra",
+        "resposta": "Cáceres",
+        "categoria": "Geografia",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "Qual bacia hidrográfica cobre parte do leste de Mato Grosso?",
+        "A": "Bacia do Paraná",
+        "B": "Bacia Amazônica",
+        "C": "Bacia do Tocantins-Araguaia",
+        "D": "Bacia do São Francisco",
+        "resposta": "Bacia do Tocantins-Araguaia",
+        "categoria": "Geografia",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "Qual cidade possui o maior rebanho bovino de Mato Grosso?",
+        "A": "Sinop",
+        "B": "Juara",
+        "C": "Tangará da Serra",
+        "D": "Cáceres",
+        "resposta": "Cáceres",
+        "categoria": "Geografia",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "Qual das opções abaixo representa um importante divisor de águas em Mato Grosso?",
+        "A": "Serra do Cachimbo",
+        "B": "Chapada dos Guimarães",
+        "C": "Serra do Roncador",
+        "D": "Serra Azul",
+        "resposta": "Chapada dos Guimarães",
+        "categoria": "Geografia",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "A cidade de Sapezal é reconhecida por:",
+        "A": "Turismo histórico",
+        "B": "Cultura indígena",
+        "C": "Produção agrícola de algodão",
+        "D": "Mineração de ouro",
+        "resposta": "Produção agrícola de algodão",
+        "categoria": "Geografia",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "Qual rio nasce na Chapada dos Parecis?",
+        "A": "Rio Araguaia",
+        "B": "Rio Jauru",
+        "C": "Rio das Mortes",
+        "D": "Rio Tapajós",
+        "resposta": "Rio Jauru",
+        "categoria": "Geografia",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "Qual a principal característica do clima em Mato Grosso?",
+        "A": "Chuvas o ano todo",
+        "B": "Verão seco, inverno úmido",
+        "C": "Inverno seco, verão chuvoso",
+        "D": "Clima desértico",
+        "resposta": "Inverno seco, verão chuvoso",
+        "categoria": "Geografia",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "Qual é o principal rio da região norte de Mato Grosso?",
+        "A": "Rio Araguaia",
+        "B": "Rio Teles Pires",
+        "C": "Rio Cuiabá",
+        "D": "Rio Jauru",
+        "resposta": "Rio Teles Pires",
+        "categoria": "Geografia",
+        "dificuldade": "difícil"
     }
 ]

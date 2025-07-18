@@ -248,5 +248,185 @@ perguntas_cultura = [
         "resposta": "Festa de São Benedito",
         "categoria": "Cultura",
         "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "Qual artista cuiabano é conhecido por manter viva a tradição do rasqueado?",
+        "A": "Roberto Leal",
+        "B": "Roberto Lucialdo",
+        "C": "Pinduca",
+        "D": "Almir Sater",
+        "resposta": "Roberto Lucialdo",
+        "categoria": "Cultura",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "Qual prato típico é feito com carne, arroz e farinha de mandioca?",
+        "A": "Maria Isabel",
+        "B": "Arroz carreteiro",
+        "C": "Feijão tropeiro",
+        "D": "Mojica de peixe",
+        "resposta": "Maria Isabel",
+        "categoria": "Cultura",
+        "dificuldade": "fácil"
+    },
+    {
+        "pergunta": "Qual o nome da feira popular que acontece em Várzea Grande com forte apelo cultural e gastronômico?",
+        "A": "Feira do Cerrado",
+        "B": "Feira da Cultura",
+        "C": "Feira do Porto",
+        "D": "Feira Livre Cuiabana",
+        "resposta": "Feira do Porto",
+        "categoria": "Cultura",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "O que caracteriza a indumentária tradicional dos dançarinos de siriri?",
+        "A": "Roupas brancas com fitas coloridas",
+        "B": "Trajes de couro",
+        "C": "Saias floridas e camisas de linho",
+        "D": "Roupas indígenas típicas",
+        "resposta": "Roupas brancas com fitas coloridas",
+        "categoria": "Cultura",
+        "dificuldade": "fácil"
+    },
+    {
+        "pergunta": "Qual é o nome do espaço cultural localizado na antiga estação ferroviária de Cuiabá?",
+        "A": "Casa das Artes",
+        "B": "Museu do Rasqueado",
+        "C": "Estação Cultural",
+        "D": "Pavilhão Pantanal",
+        "resposta": "Estação Cultural",
+        "categoria": "Cultura",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "Qual é o nome do instrumento de percussão comum nas músicas de cururu?",
+        "A": "Tambor",
+        "B": "Ganzá",
+        "C": "Rebique",
+        "D": "Agogô",
+        "resposta": "Ganzá",
+        "categoria": "Cultura",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "Qual cidade mato-grossense realiza a tradicional Festa do Congo?",
+        "A": "Cáceres",
+        "B": "Vila Bela da Santíssima Trindade",
+        "C": "Cuiabá",
+        "D": "Barra do Garças",
+        "resposta": "Vila Bela da Santíssima Trindade",
+        "categoria": "Cultura",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "Qual é o nome do tradicional pastel cuiabano recheado com carne e banana?",
+        "A": "Pastel Pantaneiro",
+        "B": "Pastel de feira",
+        "C": "Pastel cuiabano",
+        "D": "Pastelão do cerrado",
+        "resposta": "Pastel cuiabano",
+        "categoria": "Cultura",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "Em qual cidade está o Museu de Arte Sacra de Mato Grosso?",
+        "A": "Sinop",
+        "B": "Cuiabá",
+        "C": "Rondonópolis",
+        "D": "Chapada dos Guimarães",
+        "resposta": "Cuiabá",
+        "categoria": "Cultura",
+        "dificuldade": "fácil"
+    },
+    {
+        "pergunta": "Qual a principal influência africana na cultura mato-grossense?",
+        "A": "A religião afro-brasileira",
+        "B": "A dança do tambor",
+        "C": "As festas quilombolas como a do Congo",
+        "D": "O artesanato em palha",
+        "resposta": "As festas quilombolas como a do Congo",
+        "categoria": "Cultura",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "O Festival de Siriri e Cururu é realizado anualmente com apoio de qual órgão?",
+        "A": "Ministério da Cultura",
+        "B": "Governo Federal",
+        "C": "Prefeitura de Cuiabá",
+        "D": "Secretaria de Estado de Cultura",
+        "resposta": "Secretaria de Estado de Cultura",
+        "categoria": "Cultura",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "Qual é o estilo arquitetônico predominante no centro histórico de Cuiabá?",
+        "A": "Neoclássico",
+        "B": "Colonial português",
+        "C": "Moderno",
+        "D": "Art Déco",
+        "resposta": "Colonial português",
+        "categoria": "Cultura",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "Qual é o nome da tradicional procissão fluvial de Cáceres?",
+        "A": "Nossa Senhora do Carmo",
+        "B": "Procissão do Divino",
+        "C": "Navegação Santa",
+        "D": "Procissão dos Canoeiros",
+        "resposta": "Nossa Senhora do Carmo",
+        "categoria": "Cultura",
+        "dificuldade": "difícil"
+    },
+    {
+        "pergunta": "A literatura oral indígena de MT é preservada por meio de:",
+        "A": "Publicações em jornais",
+        "B": "Contação de histórias nas aldeias",
+        "C": "Traduções em escolas",
+        "D": "Peças teatrais urbanas",
+        "resposta": "Contação de histórias nas aldeias",
+        "categoria": "Cultura",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "Qual é a principal celebração religiosa afrodescendente em Vila Bela da Santíssima Trindade?",
+        "A": "Festa do Rosário",
+        "B": "Congada de São Benedito",
+        "C": "Círio do Congo",
+        "D": "Festa do Congo",
+        "resposta": "Festa do Congo",
+        "categoria": "Cultura",
+        "dificuldade": "médio"
+    },
+    {
+        "pergunta": "O prato 'quibebe' típico do interior de MT é feito à base de:",
+        "A": "Pequi",
+        "B": "Abóbora",
+        "C": "Milho verde",
+        "D": "Carne seca",
+        "resposta": "Abóbora",
+        "categoria": "Cultura",
+        "dificuldade": "fácil"
+    },
+    {
+        "pergunta": "Qual é o nome do evento que celebra a música regional em Cuiabá?",
+        "A": "Festival do Rasqueado",
+        "B": "Música Cuiabana",
+        "C": "Ritmos do Cerrado",
+        "D": "Noite Pantaneira",
+        "resposta": "Festival do Rasqueado",
+        "categoria": "Cultura",
+        "dificuldade": "fácil"
+    },
+    {
+        "pergunta": "A cultura pantaneira é fortemente influenciada por:",
+        "A": "Tradições do Sul do Brasil",
+        "B": "Tradições indígenas e sertanejas",
+        "C": "Tradições europeias",
+        "D": "Cultura litorânea",
+        "resposta": "Tradições indígenas e sertanejas",
+        "categoria": "Cultura",
+        "dificuldade": "médio"
     }
 ]
