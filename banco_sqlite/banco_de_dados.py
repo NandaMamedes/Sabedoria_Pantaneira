@@ -1,9 +1,14 @@
 # Banco de Dados
 
-import sys
 import os
+import sys
+import sqlite3
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+CAMINHO_BANCO = os.path.join(BASE_DIR, 'BancoJogo.db')
 
 import sqlite3
 from perguntas_historia import perguntas_historia
@@ -15,8 +20,6 @@ from perguntas_politica import perguntas_politica
 from logica_de_negocio import regras_jogo
 from dataclasses import dataclass
 
-DB_NAME = "BancoJogo.db"
-
 @dataclass
 class Jogador:
     id: int = None
@@ -26,7 +29,7 @@ class Jogador:
     categoria: str = ""
 
 def conectar():
-    return sqlite3.connect(DB_NAME)
+    return sqlite3.connect(CAMINHO_BANCO)
 
 def inicializar_db():
     with conectar() as conn:
