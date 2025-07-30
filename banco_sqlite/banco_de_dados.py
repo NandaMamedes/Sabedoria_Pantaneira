@@ -1,5 +1,10 @@
 # Banco de Dados
 
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import sqlite3
 from perguntas_historia import perguntas_historia
 from perguntas_geografia import perguntas_geografia
@@ -7,8 +12,18 @@ from perguntas_cultura import perguntas_cultura
 from perguntas_variedades import perguntas_variedades
 from perguntas_meio_ambiente import perguntas_meio_ambiente
 from perguntas_politica import perguntas_politica
+from logica_de_negocio import regras_jogo
+from dataclasses import dataclass
 
 DB_NAME = "BancoJogo.db"
+
+@dataclass
+class Jogador:
+    id: int = None
+    jogador: str = ""
+    pontuacao: str = ""
+    nivel: str = ""
+    categoria: str = ""
 
 def conectar():
     return sqlite3.connect(DB_NAME)
@@ -113,3 +128,11 @@ with conectar() as conn:
         ))
 
     conn.commit()
+
+def adicionar_apelido(j: Jogador):
+    with conectar() as conn:
+        conn.execute("INSERT INTO ranking_local (jogador, pontuacao, nivel, categoria) VALUES (?,?,?,?)",
+                     (j.jogador, "N/A", "N/A", "N/A", "N/A"))
+        conn.commit()
+
+regras_jogo.verificar_resposta()
