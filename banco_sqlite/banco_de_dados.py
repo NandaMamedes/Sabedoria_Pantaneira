@@ -134,5 +134,5 @@ with conectar() as conn:
 def adicionar_apelido(j: Jogador):
     with conectar() as conn:
         conn.execute("INSERT INTO ranking_local (jogador, pontuacao, nivel, categoria) VALUES (?,?,?,?)",
-                     (j.jogador, "N/A", "N/A", "N/A", "N/A"))
+                     (j.jogador,"N/A", "N/A", "N/A"))
         conn.commit()
