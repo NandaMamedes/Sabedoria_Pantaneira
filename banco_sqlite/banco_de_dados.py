@@ -135,3 +135,5 @@ def adicionar_apelido(apelido: str):
         conn.execute("INSERT INTO ranking_local (jogador, pontuacao, nivel, categoria) VALUES (?,?,?,?)",
                      (apelido,"N/A", "N/A", "N/A"))
         conn.commit()
+
+# def verificar_apelido(apelido: str):
