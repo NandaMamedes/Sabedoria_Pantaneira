@@ -154,12 +154,4 @@ def iniciar_jogo():
     janela = janela_escolhida()
     janela.show()
     sys.exit(app.exec())
-
-# if __name__ == "__main__":
-#     app = QApplication(sys.argv)
-
-#     janela_escolhida = random.choice([TelaInicialArara, TelaInicialOnca, TelaInicialCapivara, TelaInicialJacare, TelaInicialTuiuiu])
-#     janela = janela_escolhida()
-#     janela.show()
-
-#     sys.exit(app.exec())
+    
