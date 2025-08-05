@@ -2,7 +2,6 @@
 
 import os
 import sys
-import sqlite3
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
@@ -11,12 +10,12 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CAMINHO_BANCO = os.path.join(BASE_DIR, 'BancoJogo.db')
 
 import sqlite3
-from perguntas_historia import perguntas_historia
-from perguntas_geografia import perguntas_geografia
-from perguntas_cultura import perguntas_cultura
-from perguntas_variedades import perguntas_variedades
-from perguntas_meio_ambiente import perguntas_meio_ambiente
-from perguntas_politica import perguntas_politica
+from banco_sqlite.perguntas_jogo.perguntas_historia import perguntas_historia as perguntas_historia
+from banco_sqlite.perguntas_jogo.perguntas_geografia import perguntas_geografia as perguntas_geografia
+from banco_sqlite.perguntas_jogo.perguntas_cultura import perguntas_cultura as perguntas_cultura
+from banco_sqlite.perguntas_jogo.perguntas_meio_ambiente import perguntas_meio_ambiente as perguntas_meio_ambiente
+from banco_sqlite.perguntas_jogo.perguntas_politica import perguntas_politica as perguntas_politica
+from banco_sqlite.perguntas_jogo.perguntas_variedades import perguntas_variedades as perguntas_variedades
 from dataclasses import dataclass
 
 @dataclass
@@ -131,8 +130,8 @@ with conectar() as conn:
 
     conn.commit()
 
-def adicionar_apelido(j: Jogador):
+def adicionar_apelido(apelido: str):
     with conectar() as conn:
         conn.execute("INSERT INTO ranking_local (jogador, pontuacao, nivel, categoria) VALUES (?,?,?,?)",
-                     (j.jogador,"N/A", "N/A", "N/A"))
+                     (apelido,"N/A", "N/A", "N/A"))
         conn.commit()
