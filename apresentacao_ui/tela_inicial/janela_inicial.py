@@ -11,7 +11,7 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QCursor
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import QApplication, QDialog
-from banco_sqlite.banco_de_dados import adicionar_apelido, verificar_apelido
+from banco_sqlite.banco_de_dados import adicionar_apelido
 
 class TelaInicialArara(QDialog):
     def __init__(self):
@@ -115,7 +115,6 @@ class TelaApelido(QDialog):
     def verificar_apelido(self, event):
         apelido = self.line_apelido.text().strip()
         if apelido:
-            verificar_apelido(apelido)
             print("Apelido:", apelido)
             adicionar_apelido(apelido)
             self.close()
