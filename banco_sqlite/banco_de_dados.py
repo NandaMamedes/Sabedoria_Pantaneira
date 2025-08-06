@@ -135,5 +135,51 @@ def adicionar_apelido(apelido: str):
         conn.execute("INSERT INTO ranking_local (jogador, pontuacao, nivel, categoria) VALUES (?,?,?,?)",
                      (apelido,"N/A", "N/A", "N/A"))
         conn.commit()
+        
+
+def obter_pergunta_aleatoria():
+    with conectar() as conn:
+        cur = conn.cursor()
+        cur.execute('SELECT pergunta FROM Perguntas ORDER BY RANDOM() LIMIT 1')
+        pergunta = cur.fetchone()
+        return pergunta[0] if pergunta else None 
+
+def obter_opcoes(pergunta):
+    with conectar() as conn:
+        cur = conn.cursor()
+        cur.execute('SELECT A, B, C, D FROM Perguntas WHERE pergunta = ?', (pergunta,))
+        opcoes = cur.fetchone()
+        return opcoes if opcoes else (None, None, None, None)
+
+
+# def lista_perguntas():
+#     perguntas_repetidas = []
+
+#     for pergunta in perguntas:
+#         if pergunta in perguntas_feitas:
+
+
+
+# def carregar_proxima_pergunta():
+
+
+
+# perguntas = [
+#     "Qual é o seu nome?",
+#     "Quantos anos você tem?",
+#     "Qual é o seu nome?",  # Pergunta repetida
+#     "Qual é a sua cor favorita?",
+#     "Quantos anos você tem?"  # Pergunta repetida
+# ]
+
+# perguntas_feitas = set()  # Usamos um conjunto para armazenar perguntas únicas
+
+# for pergunta in perguntas:
+#     if pergunta in perguntas_feitas:
+#         continue  # pula a pergunta repetida
+#     print(pergunta)
+#     input("Resposta: ")  # coleta a resposta do usuário
+#     perguntas_feitas.add(pergunta)
+
 
 # def verificar_apelido(apelido: str):
