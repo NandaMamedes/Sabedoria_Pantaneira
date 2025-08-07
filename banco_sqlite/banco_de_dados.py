@@ -136,7 +136,6 @@ def adicionar_apelido(apelido: str):
                      (apelido,"N/A", "N/A", "N/A"))
         conn.commit()
         
-
 def obter_pergunta_aleatoria():
     with conectar() as conn:
         cur = conn.cursor()
@@ -150,6 +149,14 @@ def obter_opcoes(pergunta):
         cur.execute('SELECT A, B, C, D FROM Perguntas WHERE pergunta = ?', (pergunta,))
         opcoes = cur.fetchone()
         return opcoes if opcoes else (None, None, None, None)
+    
+def obter_resposta(pergunta):
+    with conectar() as conn:
+        cur = conn.cursor()
+        cur.execute('SELECT resposta FROM Perguntas WHERE pergunta = ?', (pergunta,))
+        resposta = cur.fetchone()
+        return resposta[0] if resposta else None
+    
 
 
 # def lista_perguntas():
