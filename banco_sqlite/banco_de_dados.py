@@ -157,6 +157,13 @@ def obter_resposta(pergunta):
         resposta = cur.fetchone()
         return resposta[0] if resposta else None
     
+def obter_dificuldade(pergunta):
+    with conectar() as conn:
+        cur = conn.cursor()
+        cur.execute('SELECT dificuldade FROM Perguntas WHERE pergunta = ?', (pergunta,))
+        nivel_pergunta = cur.fetchone()
+        return nivel_pergunta[0] if nivel_pergunta else None
+    
 
 
 # def lista_perguntas():

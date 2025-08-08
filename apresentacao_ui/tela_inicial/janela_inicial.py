@@ -289,12 +289,11 @@ class TelaConfirmar(QDialog):
         self.tela_anterior = tela_anterior
         self.pergunta = pergunta
         self.resposta_escolhida = resposta_escolhida
+        # self.pontos = 0
 
-        # Define o cursor nos botões
         self.label_sim.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_nao.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
 
-        # Conecta os cliques aos métodos
         self.label_sim.mousePressEvent = self.verificar_resposta
         self.label_nao.mousePressEvent = self.fechar_janela
 
@@ -303,6 +302,7 @@ class TelaConfirmar(QDialog):
         print(f"Resposta escolhida: {self.resposta_escolhida}")
         resposta_certa = obter_resposta(self.pergunta)
         if resposta_certa == self.resposta_escolhida:
+            #self.pontos += nivel_pergunta
             print("ACERTOU!")
             self.close()
             self.tela_anterior.close()
