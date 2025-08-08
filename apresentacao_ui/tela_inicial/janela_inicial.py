@@ -107,7 +107,7 @@ class TelaApelido(QDialog):
         super().__init__()
         uic.loadUi("C:/projeto_software/tela_apelido.ui", self)
         self.tela_inicial = tela_inicial
-        self.label_imagem.setPixmap(QPixmap("C:/Users/Família Anjos/Downloads/testes do projeto de jogo/janela_apelido.png"))
+        self.label_imagem.setPixmap(QPixmap("C:/projeto_software/janela_apelido.png"))
         self.label_imagem.setScaledContents(True)
         self.label_continuar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_continuar.mousePressEvent = self.verificar_apelido
