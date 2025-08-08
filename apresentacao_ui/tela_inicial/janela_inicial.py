@@ -16,7 +16,7 @@ from banco_sqlite.banco_de_dados import adicionar_apelido, obter_pergunta_aleato
 class TelaInicialArara(QDialog):
     def __init__(self):
         super().__init__()
-        uic.loadUi("C:/Users/Família Anjos/Downloads/testes do projeto de jogo/tela_inicial_arara.ui", self)
+        uic.loadUi("C:/projeto_software/tela_inicial_arara.ui", self)
         self.label_jogar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_placar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_jogar.mousePressEvent = self.abrir_tela_apelido
@@ -34,7 +34,7 @@ class TelaInicialArara(QDialog):
 class TelaInicialOnca(QDialog):
     def __init__(self):
         super().__init__()
-        uic.loadUi("C:/Users/Família Anjos/Downloads/testes do projeto de jogo/tela_inicial_onça.ui", self)
+        uic.loadUi("C:/projeto_software/tela_inicial_onça.ui", self)
         self.label_jogar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_placar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_jogar.mousePressEvent = self.abrir_tela_apelido
@@ -52,7 +52,7 @@ class TelaInicialOnca(QDialog):
 class TelaInicialCapivara(QDialog):
     def __init__(self):
         super().__init__()
-        uic.loadUi("C:/Users/Família Anjos/Downloads/testes do projeto de jogo/tela_inicial_capivara.ui", self)
+        uic.loadUi("C:/projeto_software/tela_inicial_capivara.ui", self)
         self.label_jogar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_placar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_jogar.mousePressEvent = self.abrir_tela_apelido
@@ -69,7 +69,7 @@ class TelaInicialCapivara(QDialog):
 class TelaInicialJacare(QDialog):
     def __init__(self):
         super().__init__()
-        uic.loadUi("C:/Users/Família Anjos/Downloads/testes do projeto de jogo/tela_inicial_jacaré.ui", self)
+        uic.loadUi("C:/projeto_software/tela_inicial_jacaré.ui", self)
         self.label_jogar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_placar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_jogar.mousePressEvent = self.abrir_tela_apelido
@@ -87,7 +87,7 @@ class TelaInicialJacare(QDialog):
 class TelaInicialTuiuiu(QDialog):
     def __init__(self):
         super().__init__()
-        uic.loadUi("C:/Users/Família Anjos/Downloads/testes do projeto de jogo/tela_inicial_tuiuiu.ui", self)
+        uic.loadUi("C:/projeto_software/tela_inicial_tuiuiu.ui", self)
         self.label_jogar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_placar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_jogar.mousePressEvent = self.abrir_tela_apelido
@@ -105,7 +105,7 @@ class TelaInicialTuiuiu(QDialog):
 class TelaApelido(QDialog):
     def __init__(self, tela_inicial):
         super().__init__()
-        uic.loadUi("C:/Users/Família Anjos/Downloads/testes do projeto de jogo/tela_apelido.ui", self)
+        uic.loadUi("C:/projeto_software/tela_apelido.ui", self)
         self.tela_inicial = tela_inicial
         self.label_imagem.setPixmap(QPixmap("C:/Users/Família Anjos/Downloads/testes do projeto de jogo/janela_apelido.png"))
         self.label_imagem.setScaledContents(True)
@@ -250,7 +250,7 @@ perguntas_feitas = []
 class TelaPergunta(QDialog):
     def __init__(self, tela_anterior):
         super().__init__()
-        uic.loadUi("C:/Users/Família Anjos/Downloads/testes do projeto de jogo/tela_pergunta.ui", self)
+        uic.loadUi("C:/projeto_software/tela_pergunta.ui", self)
         self.tela_anterior = tela_anterior
 
         # Obtém uma pergunta aleatória
@@ -285,7 +285,7 @@ class TelaPergunta(QDialog):
 class TelaConfirmar(QDialog):
     def __init__(self, tela_anterior, pergunta, resposta_escolhida):
         super().__init__()
-        uic.loadUi("C:/Users/Família Anjos/Downloads/testes do projeto de jogo/tela_confirmar.ui", self)
+        uic.loadUi("C:/projeto_software/tela_confirmar.ui", self)
         self.tela_anterior = tela_anterior
         self.pergunta = pergunta
         self.resposta_escolhida = resposta_escolhida
@@ -328,9 +328,9 @@ class TelaConfirmar(QDialog):
 class TelaPlacar(QDialog):
     def __init__(self, tela_inicial):
         super().__init__()
-        uic.loadUi("C:/Users/Família Anjos/Downloads/testes do projeto de jogo/tela_apelido.ui", self)
+        uic.loadUi("C:/projeto_software/tela_apelido.ui", self)
         self.tela_inicial = tela_inicial
-        self.label_imagem.setPixmap(QPixmap("C:/Users/Família Anjos/Downloads/testes do projeto de jogo/janela_apelido.png"))
+        self.label_imagem.setPixmap(QPixmap("C:/projeto_software/janela_apelido.png"))
         self.label_imagem.setScaledContents(True)
         self.label_continuar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_continuar.mousePressEvent = self.verificar_apelido
