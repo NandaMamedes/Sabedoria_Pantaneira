@@ -62,71 +62,36 @@ inicializar_db()
 with conectar() as conn:
     cur = conn.cursor()
 
+    def inserir_pergunta(p):
+        cur.execute("SELECT 1 FROM Perguntas WHERE pergunta = ?", (p["pergunta"],))
+        if cur.fetchone() is None:
+            cur.execute("""
+                INSERT INTO Perguntas (
+                    pergunta, A, B, C, D,
+                    resposta, categoria, dificuldade
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            """, (
+                p["pergunta"], p["A"], p["B"], p["C"], p["D"],
+                p["resposta"], p["categoria"], p["dificuldade"]
+            ))
+
     for p in perguntas_historia:
-        cur.execute("""
-            INSERT INTO Perguntas (
-                pergunta, A, B, C, D,
-                resposta, categoria, dificuldade
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        """, (
-            p["pergunta"], p["A"], p["B"], p["C"], p["D"],
-            p["resposta"], p["categoria"], p["dificuldade"]
-        ))
+        inserir_pergunta(p)
 
     for p in perguntas_geografia:
-        cur.execute("""
-            INSERT INTO Perguntas (
-                pergunta, A, B, C, D,
-                resposta, categoria, dificuldade
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        """, (
-            p["pergunta"], p["A"], p["B"], p["C"], p["D"],
-            p["resposta"], p["categoria"], p["dificuldade"]
-        ))
+        inserir_pergunta(p)
 
     for p in perguntas_cultura:
-        cur.execute("""
-            INSERT INTO Perguntas (
-                pergunta, A, B, C, D,
-                resposta, categoria, dificuldade
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        """, (
-            p["pergunta"], p["A"], p["B"], p["C"], p["D"],
-            p["resposta"], p["categoria"], p["dificuldade"]
-        ))
+        inserir_pergunta(p)
 
     for p in perguntas_variedades:
-        cur.execute("""
-            INSERT INTO Perguntas (
-                pergunta, A, B, C, D,
-                resposta, categoria, dificuldade
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        """, (
-            p["pergunta"], p["A"], p["B"], p["C"], p["D"],
-            p["resposta"], p["categoria"], p["dificuldade"]
-        ))
+        inserir_pergunta(p)
 
     for p in perguntas_meio_ambiente:
-        cur.execute("""
-            INSERT INTO Perguntas (
-                pergunta, A, B, C, D,
-                resposta, categoria, dificuldade
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        """, (
-            p["pergunta"], p["A"], p["B"], p["C"], p["D"],
-            p["resposta"], p["categoria"], p["dificuldade"]
-        ))
+        inserir_pergunta(p)
 
     for p in perguntas_politica:
-        cur.execute("""
-            INSERT INTO Perguntas (
-                pergunta, A, B, C, D,
-                resposta, categoria, dificuldade
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        """, (
-            p["pergunta"], p["A"], p["B"], p["C"], p["D"],
-            p["resposta"], p["categoria"], p["dificuldade"]
-        ))
+        inserir_pergunta(p)
 
     conn.commit()
 
@@ -135,13 +100,20 @@ def adicionar_apelido(apelido: str):
         conn.execute("INSERT INTO ranking_local (jogador, pontuacao, nivel, categoria) VALUES (?,?,?,?)",
                      (apelido,"N/A", "N/A", "N/A"))
         conn.commit()
-        
-def obter_pergunta_aleatoria():
+
+def obter_pergunta_aleatoria_por_dificuldade(dificuldade):
     with conectar() as conn:
         cur = conn.cursor()
-        cur.execute('SELECT pergunta FROM Perguntas ORDER BY RANDOM() LIMIT 1')
+        cur.execute("""
+            SELECT pergunta 
+            FROM Perguntas 
+            WHERE dificuldade = ?
+            ORDER BY RANDOM() 
+            LIMIT 1
+        """, (dificuldade,))
         pergunta = cur.fetchone()
-        return pergunta[0] if pergunta else None 
+        print(f"🔍 Pergunta encontrada para '{dificuldade}': {pergunta}")
+        return pergunta[0] if pergunta else None
 
 def obter_opcoes(pergunta):
     with conectar() as conn:
@@ -163,37 +135,3 @@ def obter_dificuldade(pergunta):
         cur.execute('SELECT dificuldade FROM Perguntas WHERE pergunta = ?', (pergunta,))
         nivel_pergunta = cur.fetchone()
         return nivel_pergunta[0] if nivel_pergunta else None
-    
-
-
-# def lista_perguntas():
-#     perguntas_repetidas = []
-
-#     for pergunta in perguntas:
-#         if pergunta in perguntas_feitas:
-
-
-
-# def carregar_proxima_pergunta():
-
-
-
-# perguntas = [
-#     "Qual é o seu nome?",
-#     "Quantos anos você tem?",
-#     "Qual é o seu nome?",  # Pergunta repetida
-#     "Qual é a sua cor favorita?",
-#     "Quantos anos você tem?"  # Pergunta repetida
-# ]
-
-# perguntas_feitas = set()  # Usamos um conjunto para armazenar perguntas únicas
-
-# for pergunta in perguntas:
-#     if pergunta in perguntas_feitas:
-#         continue  # pula a pergunta repetida
-#     print(pergunta)
-#     input("Resposta: ")  # coleta a resposta do usuário
-#     perguntas_feitas.add(pergunta)
-
-
-# def verificar_apelido(apelido: str):

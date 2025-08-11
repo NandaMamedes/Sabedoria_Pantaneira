@@ -8,10 +8,11 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import random
 from PyQt6 import uic
 from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QFont
 from PyQt6.QtGui import QCursor
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import QApplication, QDialog
-from banco_sqlite.banco_de_dados import adicionar_apelido, obter_pergunta_aleatoria, obter_opcoes, obter_resposta
+from banco_sqlite.banco_de_dados import adicionar_apelido, obter_pergunta_aleatoria_por_dificuldade, obter_opcoes, obter_resposta
 
 class TelaInicialArara(QDialog):
     def __init__(self):
@@ -125,7 +126,9 @@ class TelaApelido(QDialog):
             from PyQt6.QtWidgets import QMessageBox
             QMessageBox.warning(self, "Atenção", "Digite um apelido!")
 
-perguntas_feitas = []
+perguntas_faceis = []
+perguntas_medias = []
+perguntas_dificeis = []
 
 class TelaPergunta(QDialog):
     def __init__(self, tela_anterior):
@@ -133,19 +136,34 @@ class TelaPergunta(QDialog):
         uic.loadUi("C:/projeto_software/tela_pergunta.ui", self)
         self.tela_anterior = tela_anterior
 
-        self.pergunta = obter_pergunta_aleatoria()
+        self.pergunta = obter_pergunta_aleatoria_por_dificuldade("fácil")
+
+        if not self.pergunta:
+            print("⚠ Nenhuma pergunta fácil encontrada no banco!")
+            self.label_pergunta.setText("Nenhuma pergunta encontrada.")
+            return
+
         self.opcoes = obter_opcoes(self.pergunta)
+        if not self.opcoes or len(self.opcoes) < 4:
+            print(f"⚠ Não foi possível carregar opções para a pergunta: {self.pergunta}")
+            self.label_pergunta.setText("Erro ao carregar opções.")
+            return
+        
+        font_pergunta = QFont("Arial", 13, QFont.Weight.Bold)
+        font_opcoes = QFont("Arial", 12)
+        
+        self.label_pergunta.setFont(font_pergunta)
+        for lbl in [self.label_a, self.label_b, self.label_c, self.label_d]:
+            lbl.setFont(font_opcoes)
 
         self.label_pergunta.setText(self.pergunta)
-        self.label_a.setText(self.opcoes[0]) 
-        self.label_b.setText(self.opcoes[1]) 
-        self.label_c.setText(self.opcoes[2])  
+        self.label_a.setText(self.opcoes[0])
+        self.label_b.setText(self.opcoes[1])
+        self.label_c.setText(self.opcoes[2])
         self.label_d.setText(self.opcoes[3])
 
-        self.label_a.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.label_b.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.label_c.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.label_d.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        for lbl in [self.label_a, self.label_b, self.label_c, self.label_d]:
+            lbl.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
 
         self.label_a.mousePressEvent = lambda event: self.confirmar_resposta(event, self.label_a.text())
         self.label_b.mousePressEvent = lambda event: self.confirmar_resposta(event, self.label_b.text())
@@ -179,6 +197,7 @@ class TelaConfirmar(QDialog):
         if resposta_certa == self.resposta_escolhida:
             #self.pontos += nivel_pergunta
             print("ACERTOU!")
+            perguntas_faceis.append(self.pergunta)
             self.close()
             self.tela_anterior.close()
             self.nova_tela = TelaPergunta(self)
@@ -193,8 +212,8 @@ class TelaConfirmar(QDialog):
             novo_jogo = nova_janela()
             novo_jogo.show()
 
-        print(resposta_certa)
-        print(self.resposta_escolhida)
+        print(f'Resposta escolhida: {self.resposta_escolhida}')
+        print(f'Resposta certa: {resposta_certa}')
 
     def fechar_janela(self, event):
         self.close()
