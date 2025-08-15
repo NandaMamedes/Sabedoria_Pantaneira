@@ -16,9 +16,9 @@
   <widget class="QLabel" name="label_imagem">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>491</width>
+     <x>-30</x>
+     <y>-10</y>
+     <width>531</width>
      <height>341</height>
     </rect>
    </property>
@@ -35,9 +35,9 @@
   <widget class="QLabel" name="label_pergunta">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>90</y>
-     <width>281</width>
+     <x>70</x>
+     <y>80</y>
+     <width>301</width>
      <height>41</height>
     </rect>
    </property>
