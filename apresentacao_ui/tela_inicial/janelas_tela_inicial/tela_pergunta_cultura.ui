@@ -6,27 +6,27 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>574</width>
-    <height>341</height>
+    <width>522</width>
+    <height>349</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Sabedoria Pantaneira</string>
+   <string>Form</string>
   </property>
-  <widget class="QLabel" name="label_imagem">
+  <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>581</width>
-     <height>341</height>
+     <width>521</width>
+     <height>351</height>
     </rect>
    </property>
    <property name="text">
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>../imagens_tela_inicial/janela_pergunta.png</pixmap>
+    <pixmap>janela_pergunta_cultura.jpeg</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -36,7 +36,7 @@
    <property name="geometry">
     <rect>
      <x>110</x>
-     <y>90</y>
+     <y>100</y>
      <width>301</width>
      <height>41</height>
     </rect>
@@ -48,10 +48,10 @@
   <widget class="QLabel" name="label_a">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>150</y>
-     <width>251</width>
-     <height>21</height>
+     <x>130</x>
+     <y>156</y>
+     <width>271</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="mouseTracking">
@@ -64,9 +64,9 @@
   <widget class="QLabel" name="label_b">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>200</y>
-     <width>261</width>
+     <x>120</x>
+     <y>205</y>
+     <width>281</width>
      <height>21</height>
     </rect>
    </property>
@@ -80,10 +80,10 @@
   <widget class="QLabel" name="label_c">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>250</y>
-     <width>261</width>
-     <height>21</height>
+     <x>120</x>
+     <y>256</y>
+     <width>281</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="mouseTracking">
@@ -96,9 +96,9 @@
   <widget class="QLabel" name="label_d">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>290</y>
-     <width>271</width>
+     <x>120</x>
+     <y>306</y>
+     <width>281</width>
      <height>20</height>
     </rect>
    </property>

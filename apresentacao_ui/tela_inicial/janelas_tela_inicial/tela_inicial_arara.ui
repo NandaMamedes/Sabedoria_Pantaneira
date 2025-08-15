@@ -26,7 +26,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>../imagens_tela_inicial/janela_arara.png</pixmap>
+    <pixmap>janela_arara.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
