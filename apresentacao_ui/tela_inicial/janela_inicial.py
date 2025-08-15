@@ -4,22 +4,19 @@ import os
 import sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-import os
 
 import random
 from PyQt6 import uic
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFont
+from dotenv import load_dotenv
 from PyQt6.QtGui import QCursor
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import QApplication, QDialog
 from banco_sqlite.banco_de_dados import adicionar_apelido, obter_pergunta_aleatoria_por_dificuldade, obter_opcoes, obter_resposta
 
-############################### foi adicionado ####################################
-from dotenv import load_dotenv
 load_dotenv()
 
-## Resolucao Definitva 
 interface_tela_onca = os.getenv("INTERFACE_TELA_ONCA")
 interface_tela_arara =  os.getenv("INTERFACE_TELA_ARARA")
 interface_tela_capivara = os.getenv("INTERFACE_TELA_CAPIVARA")
@@ -29,12 +26,12 @@ interface_tela_apelido = os.getenv("INTERFACE_TELA_APELIDO")
 interface_tela_pergunta = os.getenv("INTERFACE_TELA_PERGUNTA")
 interface_tela_confirmar = os.getenv("INTERFACE_TELA_CONFIRMAR")
 
-#pergunta_tela_ambiente = "C:/projeto_software/tela_pergunta_ambiente.ui"
-# pergunta_tela_cultura = "C:/projeto_software/tela_pergunta_cultura.ui"
-# pergunta_tela_geografia = "C:/projeto_software/tela_pergunta_geografia.ui"
-# pergunta_tela_historia = "C:/projeto_software/tela_pergunta_historia.ui"
-# pergunta_tela_politica = "C:/projeto_software/tela_pergunta_politica.ui"
-# pergunta_tela_variedades = "C:/projeto_software/tela_pergunta_variedades.ui"
+interface_tela_ambiente = os.getenv("INTERFACE_TELA_AMBIENTE")
+interface_tela_cultura =  os.getenv("INTERFACE_TELA_CULTURA")
+interface_tela_geografia = os.getenv("INTERFACE_TELA_GEOGRAFIA")
+interface_tela_historia = os.getenv("INTERFACE_TELA_HISTORIA")
+interface_tela_politica = os.getenv("INTERFACE_TELA_POLITICA")
+interface_tela_variedades = os.getenv("INTERFACE_TELA_VARIEDADES")
 
 
 class TelaInicialArara(QDialog):
@@ -167,7 +164,7 @@ class TelaPergunta(QDialog):
     def __init__(self, tela_anterior):
         super().__init__()
         #uic.loadUi("C:/projeto_software/tela_pergunta.ui", self) #####################
-        uic.loadUi(interface_tela_pergunta, self) # TESTE
+        uic.loadUi(interface_tela_ambiente, self) # TESTE
         self.tela_anterior = tela_anterior
 
         self.pergunta = obter_pergunta_aleatoria_por_dificuldade("fácil")
