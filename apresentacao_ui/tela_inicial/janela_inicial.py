@@ -19,15 +19,15 @@ from banco_sqlite.banco_de_dados import adicionar_apelido, obter_pergunta_aleato
 from dotenv import load_dotenv
 load_dotenv()
 
-## GAMBIARRA TEMPORARIA 
+## Resolucao Definitva 
 interface_tela_onca = os.getenv("INTERFACE_TELA_ONCA")
-interface_tela_arara = "C:\\Users\\cyber_edux_86\\Documents\\GitHub\\Sabedoria_Pantaneira\\apresentacao_ui\\tela_inicial\\janelas_tela_inicial\\tela_inicial_arara.ui"
-interface_tela_capivara = "C:\\Users\\cyber_edux_86\\Documents\\GitHub\\Sabedoria_Pantaneira\\apresentacao_ui\\tela_inicial\\janelas_tela_inicial\\tela_inicial_capivara.ui"
-interface_tela_jacare = "C:\\Users\\cyber_edux_86\\Documents\\GitHub\\Sabedoria_Pantaneira\\apresentacao_ui\\tela_inicial\\janelas_tela_inicial\\tela_inicial_jacare.ui"
-interface_tela_tuiuiui = "C:\\Users\\cyber_edux_86\\Documents\\GitHub\\Sabedoria_Pantaneira\\apresentacao_ui\\tela_inicial\\janelas_tela_inicial\\tela_inicial_tuiuiu.ui"
-interface_tela_apelido = "C:\\Users\\cyber_edux_86\\Documents\\GitHub\\Sabedoria_Pantaneira\\apresentacao_ui\\tela_inicial\\janelas_tela_inicial\\tela_apelido.ui"
-interface_tela_pergunta = "C:\\Users\\cyber_edux_86\\Documents\\GitHub\\Sabedoria_Pantaneira\\apresentacao_ui\\tela_inicial\\janelas_tela_inicial\\tela_pergunta.ui"
-interface_tela_confirmar = "C:\\Users\\cyber_edux_86\\Documents\\GitHub\\Sabedoria_Pantaneira\\apresentacao_ui\\tela_inicial\\janelas_tela_inicial\\tela_confirmar.ui"
+interface_tela_arara =  os.getenv("INTERFACE_TELA_ARARA")
+interface_tela_capivara = os.getenv("INTERFACE_TELA_CAPIVARA")
+interface_tela_jacare = os.getenv("INTERFACE_TELA_JACARE")
+interface_tela_tuiuiui = os.getenv("INTERFACE_TELA_TUIUIU")
+interface_tela_apelido = os.getenv("INTERFACE_TELA_APELIDO")
+interface_tela_pergunta = os.getenv("INTERFACE_TELA_PERGUNTA")
+interface_tela_confirmar = os.getenv("INTERFACE_TELA_CONFIRMAR")
 
 #pergunta_tela_ambiente = "C:/projeto_software/tela_pergunta_ambiente.ui"
 # pergunta_tela_cultura = "C:/projeto_software/tela_pergunta_cultura.ui"
