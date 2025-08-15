@@ -135,3 +135,10 @@ def obter_dificuldade(pergunta):
         cur.execute('SELECT dificuldade FROM Perguntas WHERE pergunta = ?', (pergunta,))
         nivel_pergunta = cur.fetchone()
         return nivel_pergunta[0] if nivel_pergunta else None
+
+def obter_categoria(pergunta):
+    with conectar() as conn:
+        cur = conn.cursor()
+        cur.execute('SELECT categoria FROM Perguntas WHERE pergunta = ?', (pergunta,))
+        categoria = cur.fetchone()
+        return categoria[0] if categoria else None

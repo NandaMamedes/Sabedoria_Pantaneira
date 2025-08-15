@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 from PyQt6.QtGui import QCursor
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import QApplication, QDialog
-from banco_sqlite.banco_de_dados import adicionar_apelido, obter_pergunta_aleatoria_por_dificuldade, obter_opcoes, obter_resposta
+from banco_sqlite.banco_de_dados import adicionar_apelido, obter_pergunta_aleatoria_por_dificuldade, obter_opcoes, obter_resposta, obter_categoria
 
 load_dotenv()
 
@@ -25,6 +25,7 @@ interface_tela_tuiuiui = os.getenv("INTERFACE_TELA_TUIUIU")
 interface_tela_apelido = os.getenv("INTERFACE_TELA_APELIDO")
 interface_tela_pergunta = os.getenv("INTERFACE_TELA_PERGUNTA")
 interface_tela_confirmar = os.getenv("INTERFACE_TELA_CONFIRMAR")
+interface_tela_fim = os.getenv("INTERFACE_TELA_FIM")
 
 interface_tela_ambiente = os.getenv("INTERFACE_TELA_AMBIENTE")
 interface_tela_cultura =  os.getenv("INTERFACE_TELA_CULTURA")
@@ -37,9 +38,7 @@ interface_tela_variedades = os.getenv("INTERFACE_TELA_VARIEDADES")
 class TelaInicialArara(QDialog):
     def __init__(self):
         super().__init__()
-
-        #uic.loadUi("C:/projeto_software/tela_inicial_onça.ui", self)
-        uic.loadUi(interface_tela_arara, self) # TESTE
+        uic.loadUi(interface_tela_arara, self) 
        
         self.label_jogar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_placar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
@@ -58,8 +57,7 @@ class TelaInicialArara(QDialog):
 class TelaInicialOnca(QDialog):
     def __init__(self):
         super().__init__()
-        #uic.loadUi("C:/projeto_software/tela_inicial_onça.ui", self)
-        uic.loadUi(interface_tela_onca, self) # TESTE
+        uic.loadUi(interface_tela_onca, self)
 
         self.label_jogar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_placar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
@@ -78,8 +76,7 @@ class TelaInicialOnca(QDialog):
 class TelaInicialCapivara(QDialog):
     def __init__(self):
         super().__init__()
-        #uic.loadUi("C:/projeto_software/tela_inicial_capivara.ui", self)
-        uic.loadUi(interface_tela_capivara, self) # TESTE
+        uic.loadUi(interface_tela_capivara, self)
         self.label_jogar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_placar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_jogar.mousePressEvent = self.abrir_tela_apelido
@@ -96,7 +93,6 @@ class TelaInicialCapivara(QDialog):
 class TelaInicialJacare(QDialog):
     def __init__(self):
         super().__init__()
-        #uic.loadUi("C:/projeto_software/tela_inicial_jacaré.ui", self)
         uic.loadUi(interface_tela_jacare, self) # TESTE
         self.label_jogar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_placar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
@@ -115,7 +111,6 @@ class TelaInicialJacare(QDialog):
 class TelaInicialTuiuiu(QDialog):
     def __init__(self):
         super().__init__()
-        #uic.loadUi("C:/projeto_software/tela_inicial_tuiuiu.ui", self)
         uic.loadUi(interface_tela_tuiuiui, self) # TESTE
         self.label_jogar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_placar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
@@ -134,11 +129,8 @@ class TelaInicialTuiuiu(QDialog):
 class TelaApelido(QDialog):
     def __init__(self, tela_inicial):
         super().__init__()
-        #uic.loadUi("C:/projeto_software/tela_apelido.ui", self)
-        uic.loadUi(interface_tela_apelido, self) # TESTE
+        uic.loadUi(interface_tela_apelido, self)
         self.tela_inicial = tela_inicial
-        #self.label_imagem.setPixmap(QPixmap("C:/projeto_software/janela_apelido.png"))
-        # self.label_imagem.setPixmap(QPixmap("C:/Users/cyber_edux__86Documents/GitHub/Sabedoria_Pantaneira/apresentacao_ui/tela_inicial/janelas_tela_inicial/tela_apelido.png"))
         self.label_imagem.setScaledContents(True)
         self.label_continuar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_continuar.mousePressEvent = self.verificar_apelido
@@ -156,44 +148,54 @@ class TelaApelido(QDialog):
             from PyQt6.QtWidgets import QMessageBox
             QMessageBox.warning(self, "Atenção", "Digite um apelido!")
 
-#perguntas_faceis = []
-#perguntas_medias = []
-#perguntas_dificeis = []
 
 class TelaPergunta(QDialog):
     def __init__(self, tela_anterior):
         super().__init__()
-        #uic.loadUi("C:/projeto_software/tela_pergunta.ui", self) #####################
-        uic.loadUi(interface_tela_ambiente, self) # TESTE
         self.tela_anterior = tela_anterior
 
-        self.pergunta = obter_pergunta_aleatoria_por_dificuldade("fácil")
-
+        self.pergunta = obter_pergunta_aleatoria_por_dificuldade("difícil")
         if not self.pergunta:
             print("⚠ Nenhuma pergunta fácil encontrada no banco!")
+            uic.loadUi(interface_tela_ambiente, self) 
             self.label_pergunta.setText("Nenhuma pergunta encontrada.")
             return
+
+        self.categoria = obter_categoria(self.pergunta)
+
+        if self.categoria == "História":
+            ui_path = interface_tela_historia
+        elif self.categoria == "Geografia":
+            ui_path = interface_tela_geografia
+        elif self.categoria == "Cultura":
+            ui_path = interface_tela_cultura
+        elif self.categoria == "Variedades":
+            ui_path = interface_tela_variedades
+        elif self.categoria == "Meio Ambiente":
+            ui_path = interface_tela_ambiente
+        elif self.categoria == "Política":
+            ui_path = interface_tela_politica
+        else:
+            ui_path = interface_tela_ambiente
+
+        uic.loadUi(ui_path, self)
 
         self.opcoes = obter_opcoes(self.pergunta)
         if not self.opcoes or len(self.opcoes) < 4:
             print(f"⚠ Não foi possível carregar opções para a pergunta: {self.pergunta}")
             self.label_pergunta.setText("Erro ao carregar opções.")
             return
-        
+
         font_pergunta = QFont("Arial", 11, QFont.Weight.Bold)
         font_opcoes = QFont("Arial", 12)
 
-        ##################  CÓDIGO QUEBRA DE LINHA ###################################
         self.label_pergunta.setFont(font_pergunta)
         self.label_pergunta.setWordWrap(True)
         self.label_pergunta.setText(self.pergunta)
-        ###########################################################################
 
-        self.label_pergunta.setFont(font_pergunta)
         for lbl in [self.label_a, self.label_b, self.label_c, self.label_d]:
             lbl.setFont(font_opcoes)
 
-        self.label_pergunta.setText(self.pergunta)
         self.label_a.setText(self.opcoes[0])
         self.label_b.setText(self.opcoes[1])
         self.label_c.setText(self.opcoes[2])
@@ -211,12 +213,10 @@ class TelaPergunta(QDialog):
         self.tela_confirmar = TelaConfirmar(self, self.pergunta, resposta_escolhida)
         self.tela_confirmar.show()
 
-
 class TelaConfirmar(QDialog):
     def __init__(self, tela_anterior, pergunta, resposta_escolhida):
         super().__init__()
-        #uic.loadUi("C:/projeto_software/tela_confirmar.ui", self)
-        uic.loadUi(interface_tela_confirmar, self) #TESTE
+        uic.loadUi(interface_tela_confirmar, self)
         self.tela_anterior = tela_anterior
         self.pergunta = pergunta
         self.resposta_escolhida = resposta_escolhida
@@ -233,36 +233,54 @@ class TelaConfirmar(QDialog):
         print(f"Resposta escolhida: {self.resposta_escolhida}")
         resposta_certa = obter_resposta(self.pergunta)
         if resposta_certa == self.resposta_escolhida:
-            #self.pontos += nivel_pergunta
             print("ACERTOU!")
-            #perguntas_faceis.append(self.pergunta)
             self.close()
             self.tela_anterior.close()
             self.nova_tela = TelaPergunta(self)
             self.nova_tela.show()
 
         else:
-            print("ERROU!")
             self.close()
-            self.tela_anterior.close()
-            nova_janela = random.choice([TelaInicialArara, TelaInicialOnca, TelaInicialCapivara,
-                                              TelaInicialJacare, TelaInicialTuiuiu])
-            novo_jogo = nova_janela()
-            novo_jogo.show()
-
-        print(f'Resposta escolhida: {self.resposta_escolhida}')
-        print(f'Resposta certa: {resposta_certa}')
+            self.tela_fim = TelaFim(self.tela_anterior, self.pergunta)
+            self.tela_fim.show()
 
     def fechar_janela(self, event):
         self.close()
+        
 
+class TelaFim(QDialog):
+    def __init__(self, tela_anterior, pergunta):
+        super().__init__()
+        uic.loadUi(interface_tela_fim, self)
+        self.tela_anterior = tela_anterior
+        self.pergunta = pergunta
+        
+        resposta_certa = obter_resposta(self.pergunta)
+            
+        self.label_resposta_certa.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.label_reiniciar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+            
+        font_resposta = QFont("Arial", 11, QFont.Weight.Bold)
+        self.label_resposta_certa.setFont(font_resposta)
+        self.label_resposta_certa.setText(resposta_certa)
+        self.label_resposta_certa.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            
+        self.label_reiniciar.mousePressEvent = self.reiniciar_jogo
+            
+    def reiniciar_jogo(self, event):
+        self.close()
+        self.tela_anterior.close()
+        
+        nova_janela = random.choice([TelaInicialArara, TelaInicialOnca, TelaInicialCapivara,
+                                              TelaInicialJacare, TelaInicialTuiuiu])
+        novo_jogo = nova_janela()
+        novo_jogo.show()
+            
 
 class TelaPlacar(QDialog):
     def __init__(self, tela_inicial):
         super().__init__()
-        #uic.loadUi("C:/projeto_software/tela_apelido.ui", self)
         self.tela_inicial = tela_inicial
-        #self.label_imagem.setPixmap(QPixmap("C:/projeto_software/janela_apelido.png"))
         self.label_imagem.setScaledContents(True)
         self.label_continuar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_continuar.mousePressEvent = self.verificar_apelido
