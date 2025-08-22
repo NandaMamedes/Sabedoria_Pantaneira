@@ -91,6 +91,7 @@ class TelaInicialCapivara(QDialog):
         self.tela_placar = TelaPlacar(self)
         self.tela_placar.show()
 
+
 class TelaInicialJacare(QDialog):
     def __init__(self):
         super().__init__()
@@ -127,29 +128,6 @@ class TelaInicialTuiuiu(QDialog):
         self.tela_placar.show()
 
 
-# class TelaApelido(QDialog):
-#     def __init__(self, tela_inicial):
-#         super().__init__()
-#         uic.loadUi(interface_tela_apelido, self)
-#         self.tela_inicial = tela_inicial
-#         self.label_imagem.setScaledContents(True)
-#         self.label_continuar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-#         self.label_continuar.mousePressEvent = self.verificar_apelido
-
-#     def verificar_apelido(self, event):
-#         apelido = self.line_apelido.text().strip()
-#         if apelido:
-#             print("Apelido:", apelido)
-#             adicionar_apelido(apelido)
-#             self.close()
-#             self.tela_inicial.close()
-#             self.tela_pergunta = TelaPergunta(self)
-#             self.tela_pergunta.show()
-#         else:
-#             from PyQt6.QtWidgets import QMessageBox
-#             QMessageBox.warning(self, "Atenção", "Digite um apelido!")
-
-
 class TelaApelido(QDialog):
     def __init__(self, tela_inicial):
         super().__init__()
@@ -159,7 +137,6 @@ class TelaApelido(QDialog):
         self.label_continuar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_continuar.mousePressEvent = self.verificar_apelido
 
-        # 🔹 Preenche com o último apelido se existir no banco
         ultimo = obter_ultimo_apelido()
         if ultimo:
             self.line_apelido.setText(ultimo)
@@ -183,6 +160,7 @@ class TelaApelido(QDialog):
         else:
             from PyQt6.QtWidgets import QMessageBox
             QMessageBox.warning(self, "Atenção", "Digite um apelido!")
+
 
 perguntas_feitas = []
 
@@ -242,13 +220,12 @@ class TelaPergunta(QDialog):
             self.label_pergunta.setText("Erro ao carregar opções.")
             return
         
-        if len(self.pergunta) >= 75:
+        if len(self.pergunta) > 75:
             font_pergunta = QFont("Arial", 10, QFont.Weight.Bold)
-            font_opcoes = QFont("Arial", 11)
         else:
-            font_pergunta = QFont("Arial", 10, QFont.Weight.Bold)
-            font_opcoes = QFont("Arial", 11)
+            font_pergunta = QFont("Arial", 11, QFont.Weight.Bold)
 
+        font_opcoes = QFont("Arial", 10)
         self.label_pergunta.setFont(font_pergunta)
         self.label_pergunta.setWordWrap(True)
         self.label_pergunta.setText(self.pergunta)
@@ -273,83 +250,6 @@ class TelaPergunta(QDialog):
         self.tela_confirmar = TelaConfirmar(self, self.pergunta, resposta_escolhida)
         self.tela_confirmar.show()
 
-# class TelaPergunta(QDialog):
-#     def __init__(self, tela_anterior):
-#         super().__init__()
-#         self.tela_anterior = tela_anterior
-
-#         self.pergunta = obter_pergunta_aleatoria_por_dificuldade("fácil")
-
-#         if self.pergunta in perguntas_feitas:
-#             print ("Pergunta repetida")
-#             self.pergunta = obter_pergunta_aleatoria_por_dificuldade("fácil")
-#             return
-        
-#         if not self.pergunta:
-#             print("⚠ Nenhuma pergunta fácil encontrada no banco!")
-#             uic.loadUi(interface_tela_ambiente, self) 
-#             self.label_pergunta.setText("Nenhuma pergunta encontrada.")
-#             return
-        
-#         print ("Pergunta nova")
-#         perguntas_feitas.append(self.pergunta)
-#         print (perguntas_feitas)
-
-#         self.categoria = obter_categoria(self.pergunta)
-
-#         if self.categoria == "História":
-#             ui_path = interface_tela_historia
-#         elif self.categoria == "Geografia":
-#             ui_path = interface_tela_geografia
-#         elif self.categoria == "Cultura":
-#             ui_path = interface_tela_cultura
-#         elif self.categoria == "Variedades":
-#             ui_path = interface_tela_variedades
-#         elif self.categoria == "Meio Ambiente":
-#             ui_path = interface_tela_ambiente
-#         elif self.categoria == "Política":
-#             ui_path = interface_tela_politica
-#         else:
-#             ui_path = interface_tela_ambiente
-
-#         uic.loadUi(ui_path, self)
-
-#         self.opcoes = obter_opcoes(self.pergunta)
-#         if not self.opcoes or len(self.opcoes) < 4:
-#             print(f"⚠ Não foi possível carregar opções para a pergunta: {self.pergunta}")
-#             self.label_pergunta.setText("Erro ao carregar opções.")
-#             return
-        
-#         if len(self.pergunta) >= 75:
-#             font_pergunta = QFont("Arial", 10, QFont.Weight.Bold)
-#             font_opcoes = QFont("Arial", 11)
-#         else:
-#             font_pergunta = QFont("Arial", 11, QFont.Weight.Bold)
-#             font_opcoes = QFont("Arial", 11)
-
-#         self.label_pergunta.setFont(font_pergunta)
-#         self.label_pergunta.setWordWrap(True)
-#         self.label_pergunta.setText(self.pergunta)
-
-#         for lbl in [self.label_a, self.label_b, self.label_c, self.label_d]:
-#             lbl.setFont(font_opcoes)
-
-#         self.label_a.setText(self.opcoes[0])
-#         self.label_b.setText(self.opcoes[1])
-#         self.label_c.setText(self.opcoes[2])
-#         self.label_d.setText(self.opcoes[3])
-
-#         for lbl in [self.label_a, self.label_b, self.label_c, self.label_d]:
-#             lbl.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-
-#         self.label_a.mousePressEvent = lambda event: self.confirmar_resposta(event, self.label_a.text())
-#         self.label_b.mousePressEvent = lambda event: self.confirmar_resposta(event, self.label_b.text())
-#         self.label_c.mousePressEvent = lambda event: self.confirmar_resposta(event, self.label_c.text())
-#         self.label_d.mousePressEvent = lambda event: self.confirmar_resposta(event, self.label_d.text())
-
-#     def confirmar_resposta(self, event, resposta_escolhida):
-#         self.tela_confirmar = TelaConfirmar(self, self.pergunta, resposta_escolhida)
-#         self.tela_confirmar.show()
 
 class TelaConfirmar(QDialog):
     def __init__(self, tela_anterior, pergunta, resposta_escolhida):
