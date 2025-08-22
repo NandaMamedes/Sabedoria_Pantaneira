@@ -95,7 +95,7 @@ class TelaInicialCapivara(QDialog):
 class TelaInicialJacare(QDialog):
     def __init__(self):
         super().__init__()
-        uic.loadUi(interface_tela_jacare, self) # TESTE
+        uic.loadUi(interface_tela_jacare, self)
         self.label_jogar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_placar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_jogar.mousePressEvent = self.abrir_tela_apelido
@@ -113,7 +113,7 @@ class TelaInicialJacare(QDialog):
 class TelaInicialTuiuiu(QDialog):
     def __init__(self):
         super().__init__()
-        uic.loadUi(interface_tela_tuiuiui, self) # TESTE
+        uic.loadUi(interface_tela_tuiuiui, self) 
         self.label_jogar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_placar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_jogar.mousePressEvent = self.abrir_tela_apelido
@@ -128,12 +128,13 @@ class TelaInicialTuiuiu(QDialog):
         self.tela_placar.show()
 
 
+# self.label_imagem.setScaledContents(True)
+
 class TelaApelido(QDialog):
     def __init__(self, tela_inicial):
         super().__init__()
         uic.loadUi(interface_tela_apelido, self)
         self.tela_inicial = tela_inicial
-        self.label_imagem.setScaledContents(True)
         self.label_continuar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_continuar.mousePressEvent = self.verificar_apelido
 
@@ -147,15 +148,17 @@ class TelaApelido(QDialog):
             if apelido_existe(apelido):
                 print("Apelido:", apelido)
                 self.close()
+                dificuldade = "fácil"
                 self.tela_inicial.close()
-                self.tela_pergunta = TelaPergunta(self)
+                self.tela_pergunta = TelaPergunta(self, dificuldade)
                 self.tela_pergunta.show()
             else:
                 print("Apelido:", apelido)
                 adicionar_apelido(apelido)
                 self.close()
+                dificuldade = "fácil"
                 self.tela_inicial.close()
-                self.tela_pergunta = TelaPergunta(self)
+                self.tela_pergunta = TelaPergunta(self, dificuldade)
                 self.tela_pergunta.show()
         else:
             from PyQt6.QtWidgets import QMessageBox
@@ -163,16 +166,22 @@ class TelaApelido(QDialog):
 
 
 perguntas_feitas = []
+pontuacao = 0
+acertos_faceis = 0
+acertos_medios = 0
+acertos_dificeis = 0
+dificuldade_atual = "fácil"
 
 class TelaPergunta(QDialog):
-    def __init__(self, tela_anterior):
+    def __init__(self, tela_anterior, dificuldade):
         super().__init__()
         self.tela_anterior = tela_anterior
+        self.dificuldade = dificuldade
 
         tentativas = 0
 
         while True:
-            self.pergunta = obter_pergunta_aleatoria_por_dificuldade("fácil")
+            self.pergunta = obter_pergunta_aleatoria_por_dificuldade(self.dificuldade)
             tentativas += 1
 
             if not self.pergunta:
@@ -251,6 +260,41 @@ class TelaPergunta(QDialog):
         self.tela_confirmar.show()
 
 
+# class TelaConfirmar(QDialog):
+#     def __init__(self, tela_anterior, pergunta, resposta_escolhida):
+#         super().__init__()
+#         uic.loadUi(interface_tela_confirmar, self)
+#         self.tela_anterior = tela_anterior
+#         self.pergunta = pergunta
+#         self.resposta_escolhida = resposta_escolhida
+#         self.pontos = 0
+
+#         self.label_sim.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+#         self.label_nao.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+
+#         self.label_sim.mousePressEvent = self.verificar_resposta
+#         self.label_nao.mousePressEvent = self.fechar_janela
+
+#     def verificar_resposta(self, event):
+#         print(f"Pergunta: {self.pergunta}")
+#         print(f"Resposta escolhida: {self.resposta_escolhida}")
+#         resposta_certa = obter_resposta(self.pergunta)
+#         if resposta_certa == self.resposta_escolhida:
+#             print("ACERTOU!")
+#             self.close()
+#             self.tela_anterior.close()
+#             self.nova_tela = TelaPergunta(self)
+#             self.nova_tela.show()
+
+#         else:
+#             perguntas_feitas.clear()
+#             self.close()
+#             self.tela_fim = TelaFim(self.tela_anterior, self.pergunta)
+#             self.tela_fim.show()
+
+#     def fechar_janela(self, event):
+#         self.close()
+
 class TelaConfirmar(QDialog):
     def __init__(self, tela_anterior, pergunta, resposta_escolhida):
         super().__init__()
@@ -258,7 +302,6 @@ class TelaConfirmar(QDialog):
         self.tela_anterior = tela_anterior
         self.pergunta = pergunta
         self.resposta_escolhida = resposta_escolhida
-        # self.pontos = 0
 
         self.label_sim.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_nao.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
@@ -267,17 +310,52 @@ class TelaConfirmar(QDialog):
         self.label_nao.mousePressEvent = self.fechar_janela
 
     def verificar_resposta(self, event):
+        global pontuacao, acertos_faceis, acertos_medios, acertos_dificeis, dificuldade_atual
+
         print(f"Pergunta: {self.pergunta}")
         print(f"Resposta escolhida: {self.resposta_escolhida}")
         resposta_certa = obter_resposta(self.pergunta)
+
         if resposta_certa == self.resposta_escolhida:
-            print("ACERTOU!")
+            print("✅ ACERTOU!")
+            pontuacao += 10  # adiciona pontos
+            print(f"Pontuação: {pontuacao}")
+
+            if dificuldade_atual == "fácil":
+                acertos_faceis += 1
+                print(f"Acertos fáceis: {acertos_faceis}/5")
+
+                # Se acertou 5 fáceis → muda dificuldade
+                if acertos_faceis >= 5:
+                    dificuldade_atual = "médio"
+                    print("🚀 Avançou para dificuldade MÉDIA!")
+
+            elif dificuldade_atual == "médio":
+                    acertos_medios += 1
+                    print(f"Acertos médios: {acertos_medios}/5")
+                    
+                    if acertos_medios >= 5:
+                        dificuldade_atual = "difícil"
+                        print("🚀 Avançou para dificuldade DIFÍCIL!")
+            
+            elif dificuldade_atual == "difícil":
+                acertos_dificeis += 1
+                print(f"Acertos difíceis: {acertos_dificeis}/5")
+
+                if acertos_dificeis == 5:
+                    print ("fim de jogo!")
+
             self.close()
             self.tela_anterior.close()
-            self.nova_tela = TelaPergunta(self)
+            self.nova_tela = TelaPergunta(self, dificuldade_atual)  # passa a dificuldade atualizada
             self.nova_tela.show()
 
         else:
+            print("❌ ERROU!")
+            acertos_faceis = 0
+            acertos_medios = 0
+            acertos_dificeis = 0
+            dificuldade_atual = "fácil"
             perguntas_feitas.clear()
             self.close()
             self.tela_fim = TelaFim(self.tela_anterior, self.pergunta)
@@ -285,7 +363,7 @@ class TelaConfirmar(QDialog):
 
     def fechar_janela(self, event):
         self.close()
-        
+ 
 
 class TelaFim(QDialog):
     def __init__(self, tela_anterior, pergunta):
