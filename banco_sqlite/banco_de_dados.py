@@ -51,8 +51,7 @@ def inicializar_db():
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 jogador TEXT NOT NULL,
                 pontuacao TEXT NOT NULL,
-                nivel TEXT NOT NULL,
-                categoria TEXT NOT NULL
+                nivel TEXT NOT NULL
             )
         """)
         conn.commit()
@@ -97,10 +96,23 @@ with conectar() as conn:
 
 def adicionar_apelido(apelido: str):
     with conectar() as conn:
-        conn.execute("INSERT INTO ranking_local (jogador, pontuacao, nivel, categoria) VALUES (?,?,?,?)",
-                     (apelido,"N/A", "N/A", "N/A"))
+        conn.execute("INSERT INTO ranking_local (jogador, pontuacao, nivel) VALUES (?,?,?)",
+                     (apelido,"N/A", "N/A"))
         conn.commit()
 
+def obter_ultimo_apelido():
+    with conectar() as conn:
+        cur = conn.cursor()
+        cur.execute("SELECT jogador FROM ranking_local ORDER BY id DESC LIMIT 1")
+        apelido = cur.fetchone()
+        return apelido[0] if apelido else ""
+
+def apelido_existe(apelido: str) -> bool:
+    with conectar() as conn:
+        cur = conn.cursor()
+        cur.execute("SELECT 1 FROM ranking_local WHERE jogador = ?", (apelido,))
+        return cur.fetchone() is not None
+    
 def obter_pergunta_aleatoria_por_dificuldade(dificuldade):
     with conectar() as conn:
         cur = conn.cursor()
