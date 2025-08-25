@@ -27,6 +27,7 @@ interface_tela_apelido = os.getenv("INTERFACE_TELA_APELIDO")
 interface_tela_pergunta = os.getenv("INTERFACE_TELA_PERGUNTA")
 interface_tela_confirmar = os.getenv("INTERFACE_TELA_CONFIRMAR")
 interface_tela_fim = os.getenv("INTERFACE_TELA_FIM")
+interface_tela_placar = os.getenv("INTERFACE_TELA_PLACAR")
 
 interface_tela_ambiente = os.getenv("INTERFACE_TELA_AMBIENTE")
 interface_tela_cultura =  os.getenv("INTERFACE_TELA_CULTURA")
@@ -365,53 +366,140 @@ class TelaConfirmar(QDialog):
         self.close()
  
 
+#class TelaFim(QDialog):
+#    def __init__(self, tela_anterior, pergunta):
+#        super().__init__()
+#        uic.loadUi(interface_tela_fim, self)
+#        self.tela_anterior = tela_anterior
+#        self.pergunta = pergunta
+#        
+#        resposta_certa = obter_resposta(self.pergunta)
+            
+#        self.label_resposta_certa.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+#        self.label_reiniciar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+            
+#        font_resposta = QFont("Arial", 11, QFont.Weight.Bold)
+#        self.label_resposta_certa.setFont(font_resposta)
+#        self.label_resposta_certa.setText(resposta_certa)
+#        self.label_resposta_certa.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            
+#        self.label_reiniciar.mousePressEvent = self.reiniciar_jogo
+            
+#    def reiniciar_jogo(self, event):
+#        self.close()
+#        self.tela_anterior.close()
+        
+ #       nova_janela = random.choice([TelaInicialArara, TelaInicialOnca, TelaInicialCapivara,
+  #                                            TelaInicialJacare, TelaInicialTuiuiu])
+   #     novo_jogo = nova_janela()
+    #    novo_jogo.show()
+            
+################################################ teste 
+
 class TelaFim(QDialog):
     def __init__(self, tela_anterior, pergunta):
         super().__init__()
         uic.loadUi(interface_tela_fim, self)
         self.tela_anterior = tela_anterior
         self.pergunta = pergunta
-        
+
         resposta_certa = obter_resposta(self.pergunta)
-            
+
         self.label_resposta_certa.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_reiniciar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-            
+
         font_resposta = QFont("Arial", 11, QFont.Weight.Bold)
         self.label_resposta_certa.setFont(font_resposta)
         self.label_resposta_certa.setText(resposta_certa)
         self.label_resposta_certa.setAlignment(Qt.AlignmentFlag.AlignCenter)
-            
+
         self.label_reiniciar.mousePressEvent = self.reiniciar_jogo
-            
+
     def reiniciar_jogo(self, event):
+        global pontuacao  # <-- pega a pontuação global atual
+
         self.close()
         self.tela_anterior.close()
-        
-        nova_janela = random.choice([TelaInicialArara, TelaInicialOnca, TelaInicialCapivara,
-                                              TelaInicialJacare, TelaInicialTuiuiu])
-        novo_jogo = nova_janela()
-        novo_jogo.show()
-            
+
+        # Abre a tela do placar com a pontuação atual
+        self.tela_placar = TelaPlacar(self, pontuacao)
+        self.tela_placar.show()
+
+        # (Opcional) Zera a pontuação para o próximo jogo
+        pontuacao = 0
 
 class TelaPlacar(QDialog):
-    def __init__(self, tela_inicial):
+    def __init__(self, tela_inicial, pontuacao_atual):
         super().__init__()
+        uic.loadUi(interface_tela_placar, self)  # ⚠️ Use o caminho correto do seu .ui
         self.tela_inicial = tela_inicial
-        self.label_imagem.setScaledContents(True)
-        self.label_continuar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.label_continuar.mousePressEvent = self.verificar_apelido
 
-    def verificar_apelido(self, event):
-        apelido = self.line_apelido.text().strip()
-        if apelido:
-            print("Apelido:", apelido)
-            adicionar_apelido(apelido)
-            self.close()
-            self.tela_inicial.close()
-        else:
-            from PyQt6.QtWidgets import QMessageBox
-            QMessageBox.warning(self, "Atenção", "Digite um apelido!")
+        # Exibe a pontuação
+        self.label_pontuacao.setText(f" {pontuacao_atual}")
+        self.label_pontuacao.setFont(QFont("Arial", 18, QFont.Weight.Bold))
+        self.label_pontuacao.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        # Imagem (se houver)
+        self.label_placar.setScaledContents(True)
+
+        # Botão de continuar
+        self.label_continuar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.label_continuar.mousePressEvent = self.voltar_para_tela_inicial
+
+    def voltar_para_tela_inicial(self, event):
+        self.close()
+        self.tela_inicial.close()
+
+        nova_tela = random.choice([
+            TelaInicialArara, TelaInicialOnca,
+            TelaInicialCapivara, TelaInicialJacare,
+            TelaInicialTuiuiu
+        ])
+        nova_tela().show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+################# codigo original ################
+#class TelaPlacar(QDialog):
+#    def __init__(self, tela_inicial):
+#        super().__init__()
+#        self.tela_inicial = tela_inicial
+#        self.label_imagem.setScaledContents(True)
+#        self.label_continuar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+#        self.label_continuar.mousePressEvent = self.verificar_apelido
+
+#    def verificar_apelido(self, event):
+#        apelido = self.line_apelido.text().strip()
+#        if apelido:
+#            print("Apelido:", apelido)
+#            adicionar_apelido(apelido)
+#            self.close()
+#            self.tela_inicial.close()
+#        else:
+#            from PyQt6.QtWidgets import QMessageBox
+#            QMessageBox.warning(self, "Atenção", "Digite um apelido!")
 
 
 def iniciar_jogo():
