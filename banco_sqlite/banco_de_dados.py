@@ -16,15 +16,6 @@ from banco_sqlite.perguntas_jogo.perguntas_cultura import perguntas_cultura as p
 from banco_sqlite.perguntas_jogo.perguntas_meio_ambiente import perguntas_meio_ambiente as perguntas_meio_ambiente
 from banco_sqlite.perguntas_jogo.perguntas_politica import perguntas_politica as perguntas_politica
 from banco_sqlite.perguntas_jogo.perguntas_variedades import perguntas_variedades as perguntas_variedades
-from dataclasses import dataclass
-
-@dataclass
-class Jogador:
-    id: int = None
-    jogador: str = ""
-    pontuacao: str = ""
-    nivel: str = ""
-    categoria: str = ""
 
 def conectar():
     return sqlite3.connect(CAMINHO_BANCO)
@@ -52,6 +43,16 @@ def inicializar_db():
                 jogador TEXT NOT NULL,
                 pontuacao TEXT NOT NULL,
                 nivel TEXT NOT NULL
+            )
+        """)
+
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS historico_jogador (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                jogador TEXT NOT NULL,
+                pontuacao INTEGER NOT NULL,
+                nivel TEXT NOT NULL,
+                data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
         conn.commit()
@@ -100,57 +101,19 @@ def adicionar_apelido(apelido: str):
                      (apelido,"N/A", "N/A"))
         conn.commit()
 
-def obter_ultimo_apelido():
+def registrar_progresso(apelido: str, pontuacao: int, nivel: str):
     with conectar() as conn:
-        cur = conn.cursor()
-        cur.execute("SELECT jogador FROM ranking_local ORDER BY id DESC LIMIT 1")
-        apelido = cur.fetchone()
-        return apelido[0] if apelido else ""
+        conn.execute("""
+            UPDATE ranking_local
+            SET pontuacao = ?, nivel = ?
+            WHERE jogador = ?
+        """, (pontuacao, nivel, apelido))
+        conn.commit()
 
-def apelido_existe(apelido: str) -> bool:
+def salvar_historico(apelido: str, pontuacao: int, nivel: str):
     with conectar() as conn:
-        cur = conn.cursor()
-        cur.execute("SELECT 1 FROM ranking_local WHERE jogador = ?", (apelido,))
-        return cur.fetchone() is not None
-    
-def obter_pergunta_aleatoria_por_dificuldade(dificuldade):
-    with conectar() as conn:
-        cur = conn.cursor()
-        cur.execute("""
-            SELECT pergunta 
-            FROM Perguntas 
-            WHERE dificuldade = ?
-            ORDER BY RANDOM() 
-            LIMIT 1
-        """, (dificuldade,))
-        pergunta = cur.fetchone()
-        print(f"🔍 Pergunta encontrada para '{dificuldade}': {pergunta}")
-        return pergunta[0] if pergunta else None
-
-def obter_opcoes(pergunta):
-    with conectar() as conn:
-        cur = conn.cursor()
-        cur.execute('SELECT A, B, C, D FROM Perguntas WHERE pergunta = ?', (pergunta,))
-        opcoes = cur.fetchone()
-        return opcoes if opcoes else (None, None, None, None)
-    
-def obter_resposta(pergunta):
-    with conectar() as conn:
-        cur = conn.cursor()
-        cur.execute('SELECT resposta FROM Perguntas WHERE pergunta = ?', (pergunta,))
-        resposta = cur.fetchone()
-        return resposta[0] if resposta else None
-    
-def obter_dificuldade(pergunta):
-    with conectar() as conn:
-        cur = conn.cursor()
-        cur.execute('SELECT dificuldade FROM Perguntas WHERE pergunta = ?', (pergunta,))
-        nivel_pergunta = cur.fetchone()
-        return nivel_pergunta[0] if nivel_pergunta else None
-
-def obter_categoria(pergunta):
-    with conectar() as conn:
-        cur = conn.cursor()
-        cur.execute('SELECT categoria FROM Perguntas WHERE pergunta = ?', (pergunta,))
-        categoria = cur.fetchone()
-        return categoria[0] if categoria else None
+        conn.execute("""
+            INSERT INTO historico_jogador (jogador, pontuacao, nivel)
+            VALUES (?, ?, ?)
+        """, (apelido, pontuacao, nivel))
+        conn.commit()

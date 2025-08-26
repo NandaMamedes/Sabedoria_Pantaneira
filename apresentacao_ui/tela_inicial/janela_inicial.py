@@ -7,14 +7,15 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import random
 from PyQt6 import uic
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, QTimer
 from PyQt6.QtGui import QFont
 from dotenv import load_dotenv
 from PyQt6.QtGui import QCursor
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import QApplication, QDialog
-from banco_sqlite.banco_de_dados import (adicionar_apelido, obter_pergunta_aleatoria_por_dificuldade, obter_opcoes, obter_resposta, obter_categoria,
-                                         obter_ultimo_apelido, apelido_existe)
+from banco_sqlite.banco_de_dados import (adicionar_apelido, registrar_progresso, salvar_historico)
+from logica_de_negocio.regras_jogo import (apelido_existe, obter_ultimo_apelido, obter_pergunta_aleatoria_por_dificuldade, obter_opcoes, 
+                                           obter_resposta, obter_categoria, obter_dificuldade, obter_pontuacao, obter_historico)
 
 load_dotenv()
 
@@ -24,6 +25,10 @@ interface_tela_capivara = os.getenv("INTERFACE_TELA_CAPIVARA")
 interface_tela_jacare = os.getenv("INTERFACE_TELA_JACARE")
 interface_tela_tuiuiui = os.getenv("INTERFACE_TELA_TUIUIU")
 interface_tela_apelido = os.getenv("INTERFACE_TELA_APELIDO")
+interface_tela_historico = os.getenv("INTERFACE_TELA_HISTORICO")
+interface_tela_nivel_facil = os.getenv("INTERFACE_TELA_NIVEL_FACIL")
+interface_tela_nivel_medio = os.getenv("INTERFACE_TELA_NIVEL_MEDIO")
+interface_tela_nivel_dificil = os.getenv("INTERFACE_TELA_NIVEL_DIFICIL")
 interface_tela_pergunta = os.getenv("INTERFACE_TELA_PERGUNTA")
 interface_tela_confirmar = os.getenv("INTERFACE_TELA_CONFIRMAR")
 interface_tela_fim = os.getenv("INTERFACE_TELA_FIM")
@@ -100,7 +105,7 @@ class TelaInicialJacare(QDialog):
         self.label_jogar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_placar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_jogar.mousePressEvent = self.abrir_tela_apelido
-        self.label_placar.mousePressEvent = self.abrir_tela_apelido
+        self.label_placar.mousePressEvent = self.abrir_tela_placar
 
     def abrir_tela_apelido(self, event):
         self.tela_apelido = TelaApelido(self)
@@ -118,7 +123,7 @@ class TelaInicialTuiuiu(QDialog):
         self.label_jogar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_placar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.label_jogar.mousePressEvent = self.abrir_tela_apelido
-        self.label_placar.mousePressEvent = self.abrir_tela_apelido
+        self.label_placar.mousePressEvent = self.abrir_tela_placar
 
     def abrir_tela_apelido(self, event):
         self.tela_apelido = TelaApelido(self)
@@ -127,9 +132,6 @@ class TelaInicialTuiuiu(QDialog):
     def abrir_tela_placar(self, event):
         self.tela_placar = TelaPlacar(self)
         self.tela_placar.show()
-
-
-# self.label_imagem.setScaledContents(True)
 
 class TelaApelido(QDialog):
     def __init__(self, tela_inicial):
@@ -145,26 +147,89 @@ class TelaApelido(QDialog):
 
     def verificar_apelido(self, event):
         apelido = self.line_apelido.text().strip()
-        if apelido:
-            if apelido_existe(apelido):
-                print("Apelido:", apelido)
-                self.close()
-                dificuldade = "fácil"
-                self.tela_inicial.close()
-                self.tela_pergunta = TelaPergunta(self, dificuldade)
-                self.tela_pergunta.show()
-            else:
-                print("Apelido:", apelido)
-                adicionar_apelido(apelido)
-                self.close()
-                dificuldade = "fácil"
-                self.tela_inicial.close()
-                self.tela_pergunta = TelaPergunta(self, dificuldade)
-                self.tela_pergunta.show()
-        else:
+        
+        if not apelido:
             from PyQt6.QtWidgets import QMessageBox
             QMessageBox.warning(self, "Atenção", "Digite um apelido!")
+            return
+        
+        print("Apelido:", apelido)
+        
+        if not apelido_existe(apelido):
+            adicionar_apelido(apelido)
+            
+        self.close()
+        self.tela_inicial.close()
+        dificuldade = "fácil"
+        self.tela_pergunta = TelaPergunta(self, dificuldade)
+        self.tela_pergunta.show()
 
+# class TelaApelido(QDialog):
+#     def __init__(self, tela_inicial):
+#         super().__init__()
+#         uic.loadUi(interface_tela_apelido, self)
+#         self.tela_inicial = tela_inicial
+#         self.label_continuar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+#         self.label_continuar.mousePressEvent = self.verificar_apelido
+
+#         ultimo = obter_ultimo_apelido()
+#         if ultimo:
+#             self.line_apelido.setText(ultimo)
+
+#     def verificar_apelido(self, event):
+#         apelido = self.line_apelido.text().strip()
+        
+#         if not apelido:
+#             from PyQt6.QtWidgets import QMessageBox
+#             QMessageBox.warning(self, "Atenção", "Digite um apelido!")
+#             return
+        
+#         print("Apelido:", apelido)
+        
+#         if not apelido_existe(apelido):
+#             adicionar_apelido(apelido)
+            
+#         self.close()
+#         self.tela_inicial.close()
+#         dificuldade = "fácil"
+#         self.iniciar_fase(dificuldade)
+
+    # def iniciar_fase(self, dificuldade: str):
+    #     fases = {
+    #         "fácil": FaseFacil,
+    #         "médio": FaseMedia,
+    #         "difícil": FaseDificil
+    #     }
+
+    #     fase_classe = fases.get(dificuldade)
+    #     if fase_classe is None:
+    #         raise ValueError(f"Dificuldade inválida: {dificuldade}")
+
+    #     self.tela_fase = fase_classe(self)
+    #     self.tela_fase.show()
+
+    #     duracao_ms = 2000 
+    #     QTimer.singleShot(duracao_ms, lambda: self.abrir_tela_pergunta(dificuldade))
+
+    # def abrir_tela_pergunta(self, dificuldade):
+    #     self.tela_fase.close()
+    #     self.tela_pergunta = TelaPergunta(self, dificuldade)
+    #     self.tela_pergunta.show()
+
+# class FaseFacil(QDialog):
+#     def __init__(self, parent=None):
+#         super().__init__(parent)
+#         uic.loadUi(interface_tela_nivel_facil, self)
+
+# class FaseMedia(QDialog):
+#     def __init__(self, parent=None):
+#         super().__init__(parent)
+#         uic.loadUi(interface_tela_nivel_medio, self)
+
+# class FaseDificil(QDialog):
+#     def __init__(self, parent=None):
+#         super().__init__(parent) 
+#         uic.loadUi(interface_tela_nivel_dificil, self)
 
 perguntas_feitas = []
 pontuacao = 0
@@ -261,41 +326,6 @@ class TelaPergunta(QDialog):
         self.tela_confirmar.show()
 
 
-# class TelaConfirmar(QDialog):
-#     def __init__(self, tela_anterior, pergunta, resposta_escolhida):
-#         super().__init__()
-#         uic.loadUi(interface_tela_confirmar, self)
-#         self.tela_anterior = tela_anterior
-#         self.pergunta = pergunta
-#         self.resposta_escolhida = resposta_escolhida
-#         self.pontos = 0
-
-#         self.label_sim.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-#         self.label_nao.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-
-#         self.label_sim.mousePressEvent = self.verificar_resposta
-#         self.label_nao.mousePressEvent = self.fechar_janela
-
-#     def verificar_resposta(self, event):
-#         print(f"Pergunta: {self.pergunta}")
-#         print(f"Resposta escolhida: {self.resposta_escolhida}")
-#         resposta_certa = obter_resposta(self.pergunta)
-#         if resposta_certa == self.resposta_escolhida:
-#             print("ACERTOU!")
-#             self.close()
-#             self.tela_anterior.close()
-#             self.nova_tela = TelaPergunta(self)
-#             self.nova_tela.show()
-
-#         else:
-#             perguntas_feitas.clear()
-#             self.close()
-#             self.tela_fim = TelaFim(self.tela_anterior, self.pergunta)
-#             self.tela_fim.show()
-
-#     def fechar_janela(self, event):
-#         self.close()
-
 class TelaConfirmar(QDialog):
     def __init__(self, tela_anterior, pergunta, resposta_escolhida):
         super().__init__()
@@ -319,14 +349,13 @@ class TelaConfirmar(QDialog):
 
         if resposta_certa == self.resposta_escolhida:
             print("✅ ACERTOU!")
-            pontuacao += 10  # adiciona pontos
+            pontuacao += 10 
             print(f"Pontuação: {pontuacao}")
 
             if dificuldade_atual == "fácil":
                 acertos_faceis += 1
                 print(f"Acertos fáceis: {acertos_faceis}/5")
 
-                # Se acertou 5 fáceis → muda dificuldade
                 if acertos_faceis >= 5:
                     dificuldade_atual = "médio"
                     print("🚀 Avançou para dificuldade MÉDIA!")
@@ -338,7 +367,7 @@ class TelaConfirmar(QDialog):
                     if acertos_medios >= 5:
                         dificuldade_atual = "difícil"
                         print("🚀 Avançou para dificuldade DIFÍCIL!")
-            
+        
             elif dificuldade_atual == "difícil":
                 acertos_dificeis += 1
                 print(f"Acertos difíceis: {acertos_dificeis}/5")
@@ -348,7 +377,7 @@ class TelaConfirmar(QDialog):
 
             self.close()
             self.tela_anterior.close()
-            self.nova_tela = TelaPergunta(self, dificuldade_atual)  # passa a dificuldade atualizada
+            self.nova_tela = TelaPergunta(self, dificuldade_atual) 
             self.nova_tela.show()
 
         else:
@@ -356,45 +385,29 @@ class TelaConfirmar(QDialog):
             acertos_faceis = 0
             acertos_medios = 0
             acertos_dificeis = 0
+            
+            apelido = obter_ultimo_apelido()
+            pontuacao_atual = obter_pontuacao(apelido)
+            
+            if pontuacao_atual == "N/A":
+                salvar_historico(apelido, pontuacao, dificuldade_atual)
+                registrar_progresso(apelido, pontuacao, dificuldade_atual)
+                
+            else:
+                pontuacao_atual = int(pontuacao_atual) + pontuacao
+                salvar_historico(apelido, pontuacao, dificuldade_atual)
+                registrar_progresso(apelido, pontuacao_atual, dificuldade_atual)
+    
             dificuldade_atual = "fácil"
             perguntas_feitas.clear()
+            
             self.close()
             self.tela_fim = TelaFim(self.tela_anterior, self.pergunta)
             self.tela_fim.show()
 
     def fechar_janela(self, event):
         self.close()
- 
 
-#class TelaFim(QDialog):
-#    def __init__(self, tela_anterior, pergunta):
-#        super().__init__()
-#        uic.loadUi(interface_tela_fim, self)
-#        self.tela_anterior = tela_anterior
-#        self.pergunta = pergunta
-#        
-#        resposta_certa = obter_resposta(self.pergunta)
-            
-#        self.label_resposta_certa.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-#        self.label_reiniciar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-            
-#        font_resposta = QFont("Arial", 11, QFont.Weight.Bold)
-#        self.label_resposta_certa.setFont(font_resposta)
-#        self.label_resposta_certa.setText(resposta_certa)
-#        self.label_resposta_certa.setAlignment(Qt.AlignmentFlag.AlignCenter)
-            
-#        self.label_reiniciar.mousePressEvent = self.reiniciar_jogo
-            
-#    def reiniciar_jogo(self, event):
-#        self.close()
-#        self.tela_anterior.close()
-        
- #       nova_janela = random.choice([TelaInicialArara, TelaInicialOnca, TelaInicialCapivara,
-  #                                            TelaInicialJacare, TelaInicialTuiuiu])
-   #     novo_jogo = nova_janela()
-    #    novo_jogo.show()
-            
-################################################ teste 
 
 class TelaFim(QDialog):
     def __init__(self, tela_anterior, pergunta):
@@ -416,90 +429,41 @@ class TelaFim(QDialog):
         self.label_reiniciar.mousePressEvent = self.reiniciar_jogo
 
     def reiniciar_jogo(self, event):
-        global pontuacao  # <-- pega a pontuação global atual
-
         self.close()
         self.tela_anterior.close()
+        
+        telas_iniciais = [
+            TelaInicialArara,
+            TelaInicialOnca,
+            TelaInicialCapivara,
+            TelaInicialJacare,
+            TelaInicialTuiuiu
+            ]
+        TelaEscolhida = random.choice(telas_iniciais)
+        self.janela_inicial = TelaEscolhida()  
+        self.janela_inicial.show()
 
-        # Abre a tela do placar com a pontuação atual
-        self.tela_placar = TelaPlacar(self, pontuacao)
-        self.tela_placar.show()
-
-        # (Opcional) Zera a pontuação para o próximo jogo
-        pontuacao = 0
 
 class TelaPlacar(QDialog):
-    def __init__(self, tela_inicial, pontuacao_atual):
+    def __init__(self, tela_anterior=None):
         super().__init__()
-        uic.loadUi(interface_tela_placar, self)  # ⚠️ Use o caminho correto do seu .ui
-        self.tela_inicial = tela_inicial
+        self.tela_anterior = tela_anterior
 
-        # Exibe a pontuação
-        self.label_pontuacao.setText(f" {pontuacao_atual}")
-        self.label_pontuacao.setFont(QFont("Arial", 18, QFont.Weight.Bold))
-        self.label_pontuacao.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        uic.loadUi(interface_tela_historico, self)
+        self.setStyleSheet("background-color: cyan;")
 
-        # Imagem (se houver)
-        self.label_placar.setScaledContents(True)
+        apelido = obter_ultimo_apelido()
+        tabela_historico = obter_historico(apelido)
 
-        # Botão de continuar
-        self.label_continuar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.label_continuar.mousePressEvent = self.voltar_para_tela_inicial
+        texto = "HISTÓRICO DO JOGADOR:\n\n"
+        for linha in tabela_historico:
+            jogador, pontuacao, nivel, data_hora = linha
+            texto += f"Jogador: {jogador}\nPontos: {pontuacao}\nNível: {nivel}\nData: {data_hora}\n\n"
 
-    def voltar_para_tela_inicial(self, event):
-        self.close()
-        self.tela_inicial.close()
-
-        nova_tela = random.choice([
-            TelaInicialArara, TelaInicialOnca,
-            TelaInicialCapivara, TelaInicialJacare,
-            TelaInicialTuiuiu
-        ])
-        nova_tela().show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-################# codigo original ################
-#class TelaPlacar(QDialog):
-#    def __init__(self, tela_inicial):
-#        super().__init__()
-#        self.tela_inicial = tela_inicial
-#        self.label_imagem.setScaledContents(True)
-#        self.label_continuar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-#        self.label_continuar.mousePressEvent = self.verificar_apelido
-
-#    def verificar_apelido(self, event):
-#        apelido = self.line_apelido.text().strip()
-#        if apelido:
-#            print("Apelido:", apelido)
-#            adicionar_apelido(apelido)
-#            self.close()
-#            self.tela_inicial.close()
-#        else:
-#            from PyQt6.QtWidgets import QMessageBox
-#            QMessageBox.warning(self, "Atenção", "Digite um apelido!")
+        self.label_historico.setText(texto)
+        self.label_historico.setWordWrap(True)
+        self.label_historico.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignLeft)
+        self.label_historico.setFont(QFont("Arial", 10))
 
 
 def iniciar_jogo():

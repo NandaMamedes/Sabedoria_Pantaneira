@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TelaPlacar</class>
+ <widget class="QDialog" name="TelaPlacar">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Placar Histórico</string>
+  </property>
+  <!-- Layout principal do QDialog -->
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <!-- QScrollArea -->
+    <widget class="QScrollArea" name="scrollArea_historico">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidget_historico">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <!-- QLabel que mostrará o histórico -->
+        <widget class="QLabel" name="label_historico">
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignTop|Qt::AlignLeft</set>
+         </property>
+         <property name="text">
+          <string>Histórico do jogador aparecerá aqui...</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
