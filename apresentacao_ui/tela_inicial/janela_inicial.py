@@ -792,13 +792,13 @@ class TelaConfirmar(QDialog):
                     pontuacao_atual = obter_pontuacao(apelido)
                     
                     if pontuacao_atual == "N/A":
-                        salvar_historico(apelido, pontuacao, dificuldade_atual)
-                        registrar_progresso(apelido, pontuacao, dificuldade_atual)
+                        salvar_historico(apelido, pontuacao)
+                        registrar_progresso(apelido, pontuacao)
                     
                     else:
                         pontuacao_atual = int(pontuacao_atual) + pontuacao
-                        salvar_historico(apelido, pontuacao, dificuldade_atual)
-                        registrar_progresso(apelido, pontuacao_atual, dificuldade_atual)
+                        salvar_historico(apelido, pontuacao)
+                        registrar_progresso(apelido, pontuacao_atual)
                         
                     dificuldade_atual = "fácil"
                     perguntas_feitas.clear()
@@ -922,7 +922,7 @@ class TelaPlacar(QDialog):
         super().__init__()
         self.tela_anterior = tela_anterior
         uic.loadUi(interface_tela_historico, self)
-        self.setStyleSheet("background-color: 90EE90;")  # verde claro
+        self.setStyleSheet("background-color: cyan;")  # verde claro
 
         apelido = obter_ultimo_apelido()
         pontuacao_geral = obter_pontuacao(apelido)
