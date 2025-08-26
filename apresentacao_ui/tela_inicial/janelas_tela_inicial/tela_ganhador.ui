@@ -6,58 +6,55 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>323</width>
-    <height>222</height>
+    <width>515</width>
+    <height>351</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="label_imagem">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>331</width>
-     <height>221</height>
+     <width>521</width>
+     <height>351</height>
     </rect>
    </property>
    <property name="text">
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>janela_fim_jogo.png</pixmap>
+    <pixmap>janela_ganhador.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="label_resposta_certa">
+  <widget class="QLabel" name="label_pontuacao">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>80</y>
-     <width>231</width>
+     <x>310</x>
+     <y>150</y>
+     <width>111</width>
      <height>61</height>
     </rect>
    </property>
-   <property name="layoutDirection">
-    <enum>Qt::LeftToRight</enum>
+   <property name="mouseTracking">
+    <bool>true</bool>
    </property>
    <property name="text">
     <string/>
    </property>
-   <property name="wordWrap">
-    <bool>true</bool>
-   </property>
   </widget>
-  <widget class="QLabel" name="label_reiniciar">
+  <widget class="QLabel" name="label_jogar_novamente">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>160</y>
-     <width>111</width>
-     <height>41</height>
+     <x>160</x>
+     <y>260</y>
+     <width>201</width>
+     <height>61</height>
     </rect>
    </property>
    <property name="mouseTracking">

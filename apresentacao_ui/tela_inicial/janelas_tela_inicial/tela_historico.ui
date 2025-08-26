@@ -1,47 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>TelaPlacar</class>
- <widget class="QDialog" name="TelaPlacar">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>400</height>
+    <width>400</width>
+    <height>265</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Placar Histórico</string>
+   <string>Form</string>
   </property>
-  <!-- Layout principal do QDialog -->
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <!-- QScrollArea -->
-    <widget class="QScrollArea" name="scrollArea_historico">
-     <property name="widgetResizable">
-      <bool>true</bool>
-     </property>
-     <widget class="QWidget" name="scrollAreaWidget_historico">
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-       <item>
-        <!-- QLabel que mostrará o histórico -->
-        <widget class="QLabel" name="label_historico">
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignTop|Qt::AlignLeft</set>
-         </property>
-         <property name="text">
-          <string>Histórico do jogador aparecerá aqui...</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </widget>
-   </item>
-  </layout>
+  <widget class="QLabel" name="label_imagem">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>461</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>imagem_tela_historico.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QScrollArea" name="scrollArea_historico">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>401</width>
+     <height>271</height>
+    </rect>
+   </property>
+   <property name="widgetResizable">
+    <bool>true</bool>
+   </property>
+   <widget class="QWidget" name="scrollAreaWidget_historico">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>399</width>
+      <height>269</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_historico">
+       <property name="text">
+        <string>Histórico do jogador aparecerá aqui...</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
  </widget>
  <resources/>
  <connections/>
