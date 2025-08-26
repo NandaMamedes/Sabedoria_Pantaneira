@@ -824,13 +824,13 @@ class TelaConfirmar(QDialog):
             pontuacao_atual = obter_pontuacao(apelido)
             
             if pontuacao_atual == "N/A":
-                salvar_historico(apelido, pontuacao, dificuldade_atual)
-                registrar_progresso(apelido, pontuacao, dificuldade_atual)
+                salvar_historico(apelido, pontuacao)
+                registrar_progresso(apelido, pontuacao)
                 
             else:
                 pontuacao_atual = int(pontuacao_atual) + pontuacao
-                salvar_historico(apelido, pontuacao, dificuldade_atual)
-                registrar_progresso(apelido, pontuacao_atual, dificuldade_atual)
+                salvar_historico(apelido, pontuacao)
+                registrar_progresso(apelido, pontuacao_atual)
     
             dificuldade_atual = "fácil"
             perguntas_feitas.clear()
@@ -930,8 +930,8 @@ class TelaPlacar(QDialog):
 
         texto = f"PONTUAÇÃO GERAL: {pontuacao_geral}\n\nHISTÓRICO DO JOGADOR:\n\n"
         for linha in tabela_historico:
-            jogador, pontuacao, nivel, data_hora = linha
-            texto += f"Jogador: {jogador}\nPontos: {pontuacao}\nNível: {nivel}\nData: {data_hora}\n\n"
+            jogador, pontuacao, data_hora = linha
+            texto += f"Jogador: {jogador}\nPontos: {pontuacao}\nData: {data_hora}\n\n"
 
         self.label_historico.setText(texto)
         self.label_historico.setWordWrap(True)

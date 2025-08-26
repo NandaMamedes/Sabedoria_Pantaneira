@@ -93,7 +93,6 @@ from banco_sqlite.banco_de_dados import conectar
 # ------------------------------------------------------------------
 
 def obter_ultimo_apelido() -> str:
-    """Retorna o último apelido cadastrado no ranking local."""
     with conectar() as conn:
         cur = conn.cursor()
         cur.execute("SELECT jogador FROM ranking_local ORDER BY id DESC LIMIT 1")
@@ -102,7 +101,6 @@ def obter_ultimo_apelido() -> str:
 
 
 def apelido_existe(apelido: str) -> bool:
-    """Verifica se o apelido já existe no ranking local."""
     with conectar() as conn:
         cur = conn.cursor()
         cur.execute("SELECT 1 FROM ranking_local WHERE jogador = ?", (apelido,))
@@ -113,7 +111,6 @@ def apelido_existe(apelido: str) -> bool:
 # ------------------------------------------------------------------
 
 def obter_pergunta_aleatoria_por_dificuldade(dificuldade: str) -> str | None:
-    """Retorna uma pergunta aleatória para a dificuldade especificada."""
     with conectar() as conn:
         cur = conn.cursor()
         cur.execute("""
@@ -129,7 +126,6 @@ def obter_pergunta_aleatoria_por_dificuldade(dificuldade: str) -> str | None:
 
 
 def obter_opcoes(pergunta: str) -> tuple:
-    """Retorna as opções A, B, C e D de uma pergunta."""
     with conectar() as conn:
         cur = conn.cursor()
         cur.execute("SELECT A, B, C, D FROM Perguntas WHERE pergunta = ?", (pergunta,))
@@ -138,7 +134,6 @@ def obter_opcoes(pergunta: str) -> tuple:
 
 
 def obter_resposta(pergunta: str) -> str | None:
-    """Retorna a resposta correta de uma pergunta."""
     with conectar() as conn:
         cur = conn.cursor()
         cur.execute("SELECT resposta FROM Perguntas WHERE pergunta = ?", (pergunta,))
@@ -147,7 +142,6 @@ def obter_resposta(pergunta: str) -> str | None:
 
 
 def obter_dificuldade(pergunta: str) -> str | None:
-    """Retorna a dificuldade de uma pergunta."""
     with conectar() as conn:
         cur = conn.cursor()
         cur.execute("SELECT dificuldade FROM Perguntas WHERE pergunta = ?", (pergunta,))
@@ -156,7 +150,6 @@ def obter_dificuldade(pergunta: str) -> str | None:
 
 
 def obter_categoria(pergunta: str) -> str | None:
-    """Retorna a categoria de uma pergunta."""
     with conectar() as conn:
         cur = conn.cursor()
         cur.execute("SELECT categoria FROM Perguntas WHERE pergunta = ?", (pergunta,))
@@ -168,7 +161,6 @@ def obter_categoria(pergunta: str) -> str | None:
 # ------------------------------------------------------------------
 
 def obter_pontuacao(apelido: str) -> int | None:
-    """Retorna a pontuação atual de um jogador."""
     with conectar() as conn:
         cur = conn.cursor()
         cur.execute("SELECT pontuacao FROM ranking_local WHERE jogador = ?", (apelido,))
@@ -177,11 +169,10 @@ def obter_pontuacao(apelido: str) -> int | None:
 
 
 def obter_historico(apelido: str) -> list[tuple]:
-    """Retorna o histórico de pontuação de um jogador, ordenado do maior para o menor."""
     with conectar() as conn:
         cur = conn.cursor()
         cur.execute("""
-            SELECT jogador, pontuacao, nivel, data_hora
+            SELECT jogador, pontuacao, data_hora
             FROM historico_jogador
             WHERE jogador = ?
             ORDER BY pontuacao DESC

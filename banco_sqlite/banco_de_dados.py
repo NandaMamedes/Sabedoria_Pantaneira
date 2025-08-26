@@ -176,8 +176,7 @@ def inicializar_db():
             CREATE TABLE IF NOT EXISTS ranking_local (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 jogador TEXT NOT NULL,
-                pontuacao TEXT NOT NULL,
-                nivel TEXT NOT NULL
+                pontuacao TEXT NOT NULL
             )
         """)
 
@@ -186,7 +185,6 @@ def inicializar_db():
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 jogador TEXT NOT NULL,
                 pontuacao INTEGER NOT NULL,
-                nivel TEXT NOT NULL,
                 data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
@@ -232,26 +230,26 @@ with conectar() as conn:
 def adicionar_apelido(apelido: str):
     with conectar() as conn:
         conn.execute(
-            "INSERT INTO ranking_local (jogador, pontuacao, nivel) VALUES (?,?,?)",
-            (apelido, "N/A", "N/A")
+            "INSERT INTO ranking_local (jogador, pontuacao) VALUES (?,?)",
+            (apelido, "N/A")
         )
         conn.commit()
 
 
-def registrar_progresso(apelido: str, pontuacao: int, nivel: str):
+def registrar_progresso(apelido: str, pontuacao: int):
     with conectar() as conn:
         conn.execute("""
             UPDATE ranking_local
-            SET pontuacao = ?, nivel = ?
+            SET pontuacao = ?
             WHERE jogador = ?
-        """, (pontuacao, nivel, apelido))
+        """, (pontuacao, apelido))
         conn.commit()
 
 
-def salvar_historico(apelido: str, pontuacao: int, nivel: str):
+def salvar_historico(apelido: str, pontuacao: int):
     with conectar() as conn:
         conn.execute("""
-            INSERT INTO historico_jogador (jogador, pontuacao, nivel)
-            VALUES (?, ?, ?)
-        """, (apelido, pontuacao, nivel))
+            INSERT INTO historico_jogador (jogador, pontuacao)
+            VALUES (?, ?)
+        """, (apelido, pontuacao))
         conn.commit()
