@@ -6,39 +6,58 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>337</width>
-    <height>262</height>
+    <width>524</width>
+    <height>382</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Sabedoria Pantaneira</string>
   </property>
-  <widget class="QLabel" name="label_imagem">
+  <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>341</width>
-     <height>261</height>
+     <width>521</width>
+     <height>381</height>
     </rect>
    </property>
    <property name="text">
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>janela_apelido.png</pixmap>
+    <pixmap>janela_fim_jogo.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="label_continuar">
+  <widget class="QLabel" name="label_resposta_certa">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>150</y>
-     <width>101</width>
+     <x>210</x>
+     <y>160</y>
+     <width>261</width>
      <height>51</height>
+    </rect>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_reiniciar">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>250</y>
+     <width>201</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="mouseTracking">
@@ -46,19 +65,6 @@
    </property>
    <property name="text">
     <string/>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="line_apelido">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>90</y>
-     <width>241</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::StrongFocus</enum>
    </property>
   </widget>
  </widget>

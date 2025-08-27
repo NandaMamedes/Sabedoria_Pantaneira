@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>491</width>
-    <height>342</height>
+    <width>523</width>
+    <height>381</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,27 +18,27 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>491</width>
-     <height>341</height>
+     <width>521</width>
+     <height>381</height>
     </rect>
    </property>
    <property name="text">
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>janela_onça.png</pixmap>
+    <pixmap>janela_apelido.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="label_jogar">
+  <widget class="QLabel" name="label_continuar">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>160</y>
-     <width>91</width>
-     <height>51</height>
+     <x>170</x>
+     <y>260</y>
+     <width>181</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="mouseTracking">
@@ -48,20 +48,17 @@
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="label_placar">
+  <widget class="QLineEdit" name="line_apelido">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>250</y>
-     <width>41</width>
+     <x>110</x>
+     <y>160</y>
+     <width>301</width>
      <height>61</height>
     </rect>
    </property>
-   <property name="mouseTracking">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string/>
+   <property name="focusPolicy">
+    <enum>Qt::StrongFocus</enum>
    </property>
   </widget>
  </widget>

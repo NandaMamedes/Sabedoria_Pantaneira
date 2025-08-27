@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>273</width>
-    <height>173</height>
+    <width>1118</width>
+    <height>672</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,27 +18,27 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>271</width>
-     <height>181</height>
+     <width>1121</width>
+     <height>681</height>
     </rect>
    </property>
    <property name="text">
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>janela_confirmar.png</pixmap>
+    <pixmap>janela_onça.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="label_sim">
+  <widget class="QLabel" name="label_jogar">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>100</y>
-     <width>71</width>
-     <height>41</height>
+     <x>460</x>
+     <y>330</y>
+     <width>201</width>
+     <height>91</height>
     </rect>
    </property>
    <property name="mouseTracking">
@@ -48,13 +48,13 @@
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="label_nao">
+  <widget class="QLabel" name="label_placar">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>100</y>
-     <width>71</width>
-     <height>41</height>
+     <x>60</x>
+     <y>510</y>
+     <width>101</width>
+     <height>101</height>
     </rect>
    </property>
    <property name="mouseTracking">

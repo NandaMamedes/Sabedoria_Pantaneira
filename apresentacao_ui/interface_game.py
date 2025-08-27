@@ -4,9 +4,9 @@ import os
 import sys
 import random
 from PyQt6 import uic
+from PyQt6.QtCore import Qt
 from dotenv import load_dotenv
-from PyQt6.QtCore import Qt, QTimer
-from PyQt6.QtGui import QFont, QCursor, QPixmap
+from PyQt6.QtGui import QFont, QCursor
 from PyQt6.QtWidgets import QApplication, QDialog
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -220,17 +220,15 @@ class TelaConfirmar(QDialog):
 
     def verificar_resposta(self, event):
         global pontuacao, acertos_faceis, acertos_medios, acertos_dificeis, dificuldade_atual
-
-        # print(f"Pergunta: {self.pergunta}")
-        # print(f"Resposta escolhida: {self.resposta_escolhida}")
+        
         resposta_certa = obter_resposta(self.pergunta)
 
         if resposta_certa == self.resposta_escolhida:
             print("✅ ACERTOU!")
-            pontuacao += 10 
-            print(f"Pontuação: {pontuacao}")
 
             if dificuldade_atual == "fácil":
+                pontuacao += 5
+                print(f"Pontuação: {pontuacao}")
                 acertos_faceis += 1
                 print(f"Acertos fáceis: {acertos_faceis}/15")
 
@@ -239,6 +237,8 @@ class TelaConfirmar(QDialog):
                     print("🚀 Avançou para dificuldade MÉDIA!")
 
             elif dificuldade_atual == "médio":
+                    pontuacao += 10 
+                    print(f"Pontuação: {pontuacao}")
                     acertos_medios += 1
                     print(f"Acertos médios: {acertos_medios}/10")
                     
@@ -247,11 +247,12 @@ class TelaConfirmar(QDialog):
                         print("🚀 Avançou para dificuldade DIFÍCIL!")
         
             elif dificuldade_atual == "difícil":
+                pontuacao += 15
+                print(f"Pontuação: {pontuacao}")
                 acertos_dificeis += 1
                 print(f"Acertos difíceis: {acertos_dificeis}/5")
 
                 if acertos_dificeis == 5:
-                    # print ("fim de jogo!")
                     acertos_faceis = 0
                     acertos_medios = 0
                     acertos_dificeis = 0

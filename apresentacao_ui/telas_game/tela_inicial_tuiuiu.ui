@@ -6,27 +6,27 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>490</width>
-    <height>341</height>
+    <width>1116</width>
+    <height>674</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Sabedoria Pantaneira</string>
   </property>
-  <widget class="QLabel" name="imagem">
+  <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>-10</y>
-     <width>491</width>
-     <height>351</height>
+     <x>10</x>
+     <y>0</y>
+     <width>1101</width>
+     <height>671</height>
     </rect>
    </property>
    <property name="text">
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>janela_arara.png</pixmap>
+    <pixmap>janela_tuiuiu.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -35,10 +35,10 @@
   <widget class="QLabel" name="label_jogar">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>150</y>
-     <width>91</width>
-     <height>61</height>
+     <x>460</x>
+     <y>320</y>
+     <width>201</width>
+     <height>101</height>
     </rect>
    </property>
    <property name="mouseTracking">
@@ -51,10 +51,10 @@
   <widget class="QLabel" name="label_placar">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>250</y>
-     <width>41</width>
-     <height>61</height>
+     <x>960</x>
+     <y>500</y>
+     <width>81</width>
+     <height>101</height>
     </rect>
    </property>
    <property name="mouseTracking">
