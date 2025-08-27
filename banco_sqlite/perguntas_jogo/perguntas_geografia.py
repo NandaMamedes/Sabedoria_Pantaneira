@@ -284,7 +284,7 @@ perguntas_geografia = [
         "A": "Rio Cuiabá",
         "B": "Rio Jauru",
         "C": "Rio Teles Pires",
-        "D": "Rio Arinos",
+        "D": "Rio Paraguai",
         "resposta": "Rio Paraguai",
         "categoria": "Geografia",
         "dificuldade": "difícil"
