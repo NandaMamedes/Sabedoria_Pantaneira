@@ -221,8 +221,8 @@ class TelaConfirmar(QDialog):
     def verificar_resposta(self, event):
         global pontuacao, acertos_faceis, acertos_medios, acertos_dificeis, dificuldade_atual
 
-        print(f"Pergunta: {self.pergunta}")
-        print(f"Resposta escolhida: {self.resposta_escolhida}")
+        # print(f"Pergunta: {self.pergunta}")
+        # print(f"Resposta escolhida: {self.resposta_escolhida}")
         resposta_certa = obter_resposta(self.pergunta)
 
         if resposta_certa == self.resposta_escolhida:
@@ -232,17 +232,17 @@ class TelaConfirmar(QDialog):
 
             if dificuldade_atual == "fácil":
                 acertos_faceis += 1
-                print(f"Acertos fáceis: {acertos_faceis}/5")
+                print(f"Acertos fáceis: {acertos_faceis}/15")
 
-                if acertos_faceis >= 5:
+                if acertos_faceis >= 15:
                     dificuldade_atual = "médio"
                     print("🚀 Avançou para dificuldade MÉDIA!")
 
             elif dificuldade_atual == "médio":
                     acertos_medios += 1
-                    print(f"Acertos médios: {acertos_medios}/5")
+                    print(f"Acertos médios: {acertos_medios}/10")
                     
-                    if acertos_medios >= 5:
+                    if acertos_medios >= 10:
                         dificuldade_atual = "difícil"
                         print("🚀 Avançou para dificuldade DIFÍCIL!")
         
@@ -251,7 +251,7 @@ class TelaConfirmar(QDialog):
                 print(f"Acertos difíceis: {acertos_dificeis}/5")
 
                 if acertos_dificeis == 5:
-                    print ("fim de jogo!")
+                    # print ("fim de jogo!")
                     acertos_faceis = 0
                     acertos_medios = 0
                     acertos_dificeis = 0
@@ -261,7 +261,7 @@ class TelaConfirmar(QDialog):
                     
                     if pontuacao_atual == "N/A":
                         salvar_historico(apelido, pontuacao)
-                        registrar_progresso(apelido, pontuacao)
+                        registrar_progresso(apelido, pontuacao_atual)
                     
                     else:
                         pontuacao_atual = int(pontuacao_atual) + pontuacao
@@ -359,9 +359,9 @@ class TelaGanhador(QDialog):
         self.pontuacao_atual = str(pontuacao_atual)
 
         self.label_jogar_novamente.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        font_pontuacao = QFont("Arial", 15, QFont.Weight.Bold)
+        font_pontuacao = QFont("Arial", 28, QFont.Weight.Bold)
         self.label_pontuacao.setFont(font_pontuacao)
-        self.label_pontuacao.setText(self.pontuacao)
+        self.label_pontuacao.setText(self.pontuacao_atual)
         self.label_pontuacao.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.label_jogar_novamente.mousePressEvent = self.jogar_novamente
@@ -404,7 +404,7 @@ class TelaPlacar(QDialog):
         self.label_historico.setText(texto)
         self.label_historico.setWordWrap(True)
         self.label_historico.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignLeft)
-        self.label_historico.setFont(QFont("Arial", 15))
+        self.label_historico.setFont(QFont("Arial", 15, QFont.Weight.Bold))
 
 # ------------------------------------------------------------------
 # Função para iniciar o jogo
