@@ -14,7 +14,7 @@ from banco_sqlite.banco_de_dados import conectar
 def obter_ultimo_apelido() -> str:
     with conectar() as conn:
         cur = conn.cursor()
-        cur.execute("SELECT jogador FROM ranking_local ORDER BY id DESC LIMIT 1")
+        cur.execute("SELECT jogador FROM historico_jogador ORDER BY id DESC LIMIT 1")
         apelido = cur.fetchone()
         return apelido[0] if apelido else ""
 

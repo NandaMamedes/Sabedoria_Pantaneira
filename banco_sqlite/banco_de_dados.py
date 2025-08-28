@@ -3,6 +3,7 @@
 import os
 import sys
 import sqlite3
+from datetime import datetime
 
 # ------------------------------------------------------------------
 # Configurações de caminho
@@ -65,7 +66,7 @@ def inicializar_db():
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 jogador TEXT NOT NULL,
                 pontuacao INTEGER NOT NULL,
-                data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                data_hora TEXT
             )
         """)
         conn.commit()
@@ -107,7 +108,7 @@ with conectar() as conn:
 # Funções de jogador e pontuação
 # ------------------------------------------------------------------
 
-def adicionar_apelido(apelido: str):
+def adicionar_apelido_ranking(apelido: str):
     with conectar() as conn:
         conn.execute(
             "INSERT INTO ranking_local (jogador, pontuacao) VALUES (?,?)",
@@ -115,8 +116,15 @@ def adicionar_apelido(apelido: str):
         )
         conn.commit()
 
+def adicionar_apelido_historico(apelido: str):
+    with conectar() as conn:
+        conn.execute(
+            "INSERT INTO historico_jogador (jogador, pontuacao, data_hora) VALUES (?,?, ?)",
+            (apelido, "N/A", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        )
+        conn.commit()
 
-def registrar_progresso(apelido: str, pontuacao: int):
+def registrar_progresso_ranking(apelido: str, pontuacao: int):
     with conectar() as conn:
         conn.execute("""
             UPDATE ranking_local
@@ -125,11 +133,19 @@ def registrar_progresso(apelido: str, pontuacao: int):
         """, (pontuacao, apelido))
         conn.commit()
 
+def registrar_progresso_historico(apelido: str, pontuacao: int):
+    with conectar() as conn:
+        conn.execute("""
+            UPDATE historico_jogador
+            SET pontuacao = ?
+            WHERE jogador = ?
+        """, (pontuacao, apelido))
+        conn.commit()
 
 def salvar_historico(apelido: str, pontuacao: int):
     with conectar() as conn:
         conn.execute("""
-            INSERT INTO historico_jogador (jogador, pontuacao)
-            VALUES (?, ?)
-        """, (apelido, pontuacao))
+            INSERT INTO historico_jogador (jogador, pontuacao, data_hora)
+            VALUES (?, ?, ?)
+        """, (apelido, pontuacao, datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
         conn.commit()

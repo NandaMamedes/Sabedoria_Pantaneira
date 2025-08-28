@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Sabedoria Pantaneira</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="label_imagem">
    <property name="geometry">
     <rect>
      <x>-10</x>
